@@ -1,0 +1,850 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/hinted-subset-Poppins-MediumItalic.woff2') format('woff2'),
+    url('/fonts/poppins/hinted-subset-Poppins-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/hinted-subset-Poppins-Medium.woff2') format('woff2'),
+    url('/fonts/poppins/hinted-subset-Poppins-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/hinted-subset-Poppins-SemiBold.woff2') format('woff2'),
+    url('/fonts/poppins/hinted-subset-Poppins-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/hinted-subset-Poppins-Bold.woff2') format('woff2'),
+    url('/fonts/poppins/hinted-subset-Poppins-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+/*==============================
+   CUSTOM PROPERTIES
+===============================*/
+@theme inline {
+  --breakpoint-xs: 30rem;
+
+  --text-15-16: clamp(0.9375rem, 0.9155rem + 0.0939vw, 1rem);
+  /** From 0.9375rem at 375px to 1rem at 1440px */
+  --text-15-18: clamp(0.9375rem, 0.8715rem + 0.2817vw, 1.125rem);
+  /** From 0.9375rem at 375px to 1.125rem at 1440px */
+  --text-16-18: clamp(1rem, 0.956rem + 0.1878vw, 1.125rem);
+  /** From 1rem at 375px to 1.125rem at 1440px */
+  --text-18-22: clamp(1.125rem, 1.0282rem + 0.4131vw, 1.4rem);
+  /** From 1.125rem at 375px to 1.4rem at 1440px */
+  --text-20-24: clamp(1.25rem, 1.162rem + 0.3756vw, 1.5rem);
+  /** From 1.25rem at 375px to 1.5rem at 1440px */
+  --text-24-36: clamp(1.5rem, 1.2359rem + 1.1268vw, 2.25rem);
+  /** From 1.5rem at 375px to 2.25rem at 1440px */
+
+  --spacing-3-16: clamp(0.2rem, -0.0817rem + 1.2019vw, 1rem);
+  /** From 0.2rem at 375px to 1rem at 1440px */
+  --spacing-16-24: clamp(1rem, -0.7857rem + 7.619vw, 1.5rem);
+  /** From 1rem at 375px to 1.5rem at 480px */
+  --spacing-16-32: clamp(1rem, 0.6479rem + 1.5023vw, 2rem);
+  /** From 1rem at 375px to 2rem at 1440px */
+  --spacing-16-64: clamp(1rem, -1.8626rem + 12.2137vw, 4rem);
+  /** From 1rem at 375px to 4rem at 768px */
+  --spacing-16-128: clamp(1rem, -10.6667rem + 38.8889vw, 8rem);
+  /** From 1rem at 480px to 8rem at 768px */
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-progressbar: var(--radius-progressbar);
+  --radius-aicard: var(--radius-aicard);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-card-error: var(--shadow-card-error);
+  --shadow-hard: var(--shadow-hard);
+  --shadow-medium: var(--shadow-medium);
+  --shadow-easy: var(--shadow-easy);
+  --shadow-inset:
+    inset 0 4px 10px rgba(0, 0, 0, 0.9),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.8);
+
+  --animate-flicker: flicker 2s infinite;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-skeleton: var(--skeleton);
+  --color-error-foreground: var(--error-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-progress-track: var(--progress-track);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-correct: var(--correct-btn);
+  --color-incorrect: var(--incorrect-btn);
+}
+
+/*==============================
+  CSS VARIABLES
+===============================*/
+:root {
+
+  --radius: 0.625rem;
+  --radius-progressbar: .25rem;
+  --radius-aicard: .75rem;
+
+  --background: oklch(16.5% 0.03 282);
+  --foreground: oklch(100.00% 0.000 0);
+
+  --card: oklch(68.7% 0.164 263 / 0.1);
+  --card-foreground: oklch(92% 0.02 260);
+
+  --popover: oklch(20% 0.025 282);
+  --popover-foreground: oklch(95% 0.02 280);
+
+  --primary: oklch(58.9% 0.13 239);
+  --primary-foreground: oklch(98% 0.005 280);
+
+  --accent: oklch(58.9% 0.13 239);
+  --accent-foreground: oklch(95% 0.02 280);
+
+  --secondary: oklch(68.7% 0.164 263 / 0.1);
+  --secondary-foreground: oklch(79.4% 0.083 223);
+
+  --muted: oklch(35% 0.015 270);
+  --muted-foreground: oklch(92% 0.02 260);
+
+  /* --destructive: oklch(58% 0.25 27); */
+  --destructive: oklch(68.417% 0.15155 19.887);
+  --skeleton: oklch(20% 0.025 282);
+  --error-foreground: oklch(71.1% 0.166 22.2);
+
+  --border: oklch(58.9% 0.13 239);
+  --input: oklch(65% 0.18 200);
+  --ring: oklch(76.5% 0.151 229 / 0.7);
+  --progress-track: oklch(70% 0.01 270);
+
+  --chart-1: oklch(76.46% 0.151 229.43);
+  --chart-2: oklch(59.87% 0.265 335.87);
+  --chart-3: oklch(69.6% 0.17 162.48);
+  --chart-4: oklch(76.5% 0.151 229 / 0.7);
+  --chart-5: oklch(63.977% 0.09281 155.827);
+
+  --correct-btn: oklch(63.977% 0.09281 155.827);
+  --incorrect-btn: oklch(64.734% 0.18145 23.642);
+
+  --shadow-card: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-1) inset;
+  --shadow-card-error: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06),
+    0 0 0 0.1rem var(--color-error-foreground) inset;
+  --shadow-hard: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--color-error-foreground) inset;
+  --shadow-medium: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-1) inset;
+  --shadow-easy: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-3) inset;
+}
+
+/*==============================
+  - DARK NEON THEME
+===============================*/
+.dark {
+  --background: oklch(16.5% 0.03 282);
+  --foreground: oklch(100.00% 0.000 0);
+
+  --card: oklch(68.7% 0.164 263 / 0.1);
+  --card-foreground: oklch(92% 0.02 260);
+
+  --popover: oklch(20% 0.025 282);
+  --popover-foreground: oklch(95% 0.02 280);
+
+  --primary: oklch(58.9% 0.13 239);
+  --primary-foreground: oklch(98% 0.005 280);
+
+  --accent: oklch(58.9% 0.13 239);
+  --accent-foreground: oklch(95% 0.02 280);
+
+  --secondary: oklch(68.7% 0.164 263 / 0.1);
+  --secondary-foreground: oklch(79.4% 0.083 223);
+
+  --muted: oklch(35% 0.015 270);
+  --muted-foreground: oklch(92% 0.02 260);
+
+  --destructive: oklch(58% 0.25 27);
+  --skeleton: oklch(20% 0.025 282);
+  --error-foreground: oklch(71.1% 0.166 22.2);
+
+  --border: oklch(58.9% 0.13 239);
+  --input: oklch(65% 0.18 200);
+  --ring: oklch(58.9% 0.13 239);
+  --progress-track: oklch(70% 0.01 270);
+
+  --chart-1: oklch(76.46% 0.151 229.43);
+  --chart-2: oklch(59.87% 0.265 335.87);
+  --chart-3: oklch(69.6% 0.17 162.48);
+  --chart-4: oklch(76.5% 0.151 229 / 0.7);
+  --chart-5: oklch(63.977% 0.09281 155.827);
+
+  --correct-btn: oklch(63.977% 0.09281 155.827);
+  --incorrect-btn: oklch(58% 0.24 30);
+
+  --shadow-card: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-1) inset;
+  --shadow-card-error: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06),
+    0 0 0 0.1rem var(--color-error-foreground) inset;
+  --shadow-hard: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--color-error-foreground) inset;
+  --shadow-medium: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-1) inset;
+  --shadow-easy: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-3) inset;
+}
+
+/*==============================
+  Base
+===============================*/
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  body {
+    @apply flex flex-col items-center justify-center bg-background text-foreground font-medium;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    font-family: 'Poppins', system-ui, sans-serif;
+
+    background-image:
+      url('/src/assets/backgrounds/scribble.svg'),
+      linear-gradient(135deg,
+        var(--background),
+        color-mix(in oklch, var(--background), white 6%));
+    /* linear-gradient(
+      135deg,
+      oklch(16.5% 0.03 282),
+      oklch(23.203% 0.04242 278.593)
+    ); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+    background-size: 150%;
+    animation: zoomDrift 150s linear infinite;
+  }
+
+  main {
+    @apply flex flex-col items-center justify-center text-16-18;
+  }
+
+  button,
+  [role="button"] {
+    @apply cursor-pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1 {
+    @apply text-secondary-foreground mb-8 text-center text-24-36 font-bold;
+    text-wrap: balance;
+    -webkit-text-wrap: balance;
+    text-wrap: pretty;
+  }
+
+  form>h2 {
+    @apply text-20-24;
+  }
+
+  h2 {
+    @apply mb-4;
+  }
+
+  a {
+    @apply hover:text-chart-3
+  }
+
+  strong {
+    @apply text-16-18;
+  }
+}
+
+/*==============================
+  Utilities
+===============================*/
+@layer utilities {
+  .minimal-mode-animations {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .minimal-mode-illustrations {
+    background-image: none;
+  }
+
+  .main-action {
+    @apply min-w-12 min-h-12 p-3;
+  }
+
+  .game-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: oklch(0% 0 none / 0.3);
+    z-index: 1;
+    border-radius: 1rem;
+  }
+
+  .game-card>* {
+    z-index: 2;
+  }
+
+  @property --gradientAngle {
+    syntax: "<angle>";
+    initial-value: 45deg;
+    inherits: false;
+  }
+
+  /* Based on XOcode’s Uiverse button – MIT License:
+   https://uiverse.io/nima-mollazadeh/terrible-panda-97 */
+  .fifty-fifty-btn {
+    color: var(--color-chart-3);
+
+    border: none;
+    background: linear-gradient(var(--gradientAngle), #0ce3df, #69007f, #fc0987);
+    border-radius: 9px;
+    animation: gradientRotate 60s linear infinite;
+  }
+
+  .fifty-fifty-btn:hover {
+    animation: none;
+  }
+
+  @keyframes gradientRotate {
+    0% {
+      --gradientAngle: 45deg;
+    }
+
+    100% {
+      --gradientAngle: 405deg;
+    }
+  }
+
+  .fifty-fifty-btn::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: #272727;
+    border-radius: 9px;
+    transition: 0.5s;
+    z-index: -1;
+  }
+
+  .hover-supported .fifty-fifty-btn:hover::before {
+    opacity: 0.7;
+  }
+
+  .fifty-fifty-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0px;
+    background: linear-gradient(45deg, #0ce3df, #69007f, #fc0987);
+    border-radius: 9px;
+    transition: 0.5s;
+    opacity: 0;
+    filter: blur(20px);
+    z-index: -1;
+  }
+
+  .hover-supported .fifty-fifty-btn:hover:after {
+    opacity: 1;
+  }
+
+  .purple-bg {
+    background: radial-gradient(65.28% 65.28% at 50% 100%,
+        rgba(223, 113, 255, 0.8) 0%,
+        rgba(223, 113, 255, 0) 100%),
+      linear-gradient(0deg, #7a5af8, #7a5af8);
+
+    box-shadow:
+      0 0 0 0.1rem #ffffff44 inset,
+      0 0 0.6rem rgba(255, 255, 255, 0.1);
+    border-radius: 9px;
+  }
+
+  .side-glow {
+    position: relative;
+  }
+
+  .side-glow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -0.625rem;
+    right: -0.625rem;
+    background: radial-gradient(ellipse at left center, oklch(76.5% 0.151 229 / 0.3), transparent 70%),
+      radial-gradient(ellipse at right center, oklch(59.9% 0.265 336 / 0.3), transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+
+  .menu>button {
+    @apply w-full max-w-2xs p-4 text-16-18 mb-1;
+    box-shadow:
+      0 0 0 0.1rem #ffffff44 inset,
+      0 0 0.6rem rgba(255, 255, 255, 0.1);
+    border-radius: .5rem;
+    background-color: oklch(65% 0.22 270);
+
+    @supports (corner-shape: squircle) {
+      border-radius: 1.5rem;
+      corner-shape: squircle;
+    }
+  }
+
+  .menu>button:hover {
+    box-shadow:
+      0 0 0 0.1rem #ffffff44 inset,
+      0 0 15px rgba(0, 195, 255, 0.4);
+  }
+
+  .menu>h1 {
+    background: linear-gradient(90deg,
+        oklch(85% 0.15 260),
+        oklch(95% 0.02 280));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-style: italic;
+  }
+
+  @property --btn-angle {
+    syntax: "<angle>";
+    initial-value: 135deg;
+    inherits: false;
+  }
+
+  .animate-angle {
+    --btn-angle: 135deg;
+    background: linear-gradient(var(--btn-angle), #00c3ff, #d600ba);
+    transition: --btn-angle 500ms ease-in-out, all 400ms ease-in-out;
+  }
+
+  .hover-supported .animate-angle:hover {
+    --btn-angle: 225deg;
+  }
+
+  .login-btn {
+    box-shadow: 0 4px 20px rgba(166, 119, 227, 0.4),
+      0 0 0 0.1rem #ffffff44 inset;
+  }
+
+  .radio-btn {
+    background:
+      conic-gradient(from 220deg at 50% 50%,
+        #badbf4 0deg,
+        #b7c1c8 80deg,
+        #68869a 100deg,
+        #e5edf4 120deg,
+        #465b6c 240deg,
+        #d9ecf3 360deg),
+      #333;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    box-shadow:
+      inset 0 2px 6px rgba(255, 255, 255, 0.3),
+      /* top glow */
+      inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+      /* bottom shadow */
+      0 2px 4px rgba(0, 0, 0, 0.6),
+      0 0 5px rgb(255, 140, 0),
+      0 0 8px rgba(255, 143, 7, 0.4),
+      0 0 10px rgba(255, 142, 3, 0.912);
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(255, 160, 0, 0.7),
+        0 0 25px rgba(255, 160, 0, 0.5),
+        0 0 40px rgba(255, 160, 0, 0.3);
+    }
+
+  }
+
+  .radio-panel {
+    background: #222;
+    /* base color */
+    background-image:
+      radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0),
+      radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+    background-size: 3px 3px, 4px 4px;
+    background-position: 0 0, 2px 2px;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.8);
+    border-radius: .75rem;
+  }
+
+  .radio-btn-svg {
+    color: #fff;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
+  }
+
+  .radio-wood-frame {
+    padding: 6px;
+    border-radius: 1.5rem;
+    /* background-color: #724039; */
+    background-color: #bd6a4f;
+    background: repeating-linear-gradient(135deg,
+        #bd6a4f 0px,
+        #724039 2px);
+
+    position: relative;
+
+    box-shadow:
+      inset 0 1px 2px rgba(255, 255, 255, 0.3),
+      /* subtle top edge highlight */
+      inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+      /* bottom inner shadow */
+      0 4px 8px rgba(0, 0, 0, 0.6),
+      /* outer drop shadow */
+      0 -2px 6px rgba(255, 255, 255, 0.15);
+    /* faint top reflection */
+  }
+
+  .radio-station-name {
+    position: relative;
+    font-size: .875rem;
+    /* text-sm */
+    font-weight: 500;
+    color: black;
+    padding: 0.5rem;
+    height: 2.25rem;
+    margin: 0 0.2rem;
+    border-radius: 1rem;
+    background: radial-gradient(circle at 50% 50%,
+        #ffe680 0%,
+        #ffca3a 50%,
+        #e8a948 100%);
+    box-shadow:
+      0 0 10px rgba(255, 200, 50, 0.8),
+      0 0 20px rgba(255, 200, 50, 0.5);
+    animation: radio-light-flicker 3s infinite ease-in-out,
+      radio-light-pulse 1.5s infinite alternate;
+  }
+
+  @keyframes radio-light-pulse {
+    0% {
+      box-shadow: 0 0 8px #ffc832, 0 0 15px #ffc83266;
+    }
+
+    100% {
+      box-shadow: 0 0 16px #ffc832, 0 0 30px #ffc83299;
+    }
+  }
+
+  .radio-station-name::before,
+  .radio-station-name::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 1rem;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .radio-station-name::before {
+    left: 0;
+    background: linear-gradient(to right, #e8a948, transparent);
+  }
+
+  .radio-station-name::after {
+    right: 0;
+    background: linear-gradient(to left, #e8a948, transparent);
+  }
+
+  @keyframes radio-light-flicker {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    45% {
+      opacity: 0.95;
+    }
+
+    48% {
+      opacity: 0.85;
+    }
+
+    50% {
+      opacity: 0.9;
+    }
+
+    52% {
+      opacity: 0.87;
+    }
+
+    55% {
+      opacity: 0.95;
+    }
+  }
+
+  .radio-inner-trim {
+    padding: 4px;
+    border-radius: 1.2rem;
+    background: radial-gradient(circle at 30% 30%, #333, #111);
+    box-shadow:
+      inset 0 2px 6px rgba(255, 255, 255, 0.2),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.7),
+      inset 0 4px 10px rgba(0, 0, 0, 0.9),
+      inset 0 -4px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  .radio-top-half {
+    /* background: linear-gradient(to bottom, #222, #111); */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.6);
+    border-radius: .75rem;
+
+  }
+
+  .border-light {
+    background: radial-gradient(circle at 50% 50%,
+        #ffe680 0%,
+        #ffca3a 50%,
+        #e8a948 100%);
+    box-shadow:
+      0 0 10px rgba(255, 200, 50, 0.8),
+      0 0 20px rgba(255, 200, 50, 0.5);
+
+    animation: radio-light-flicker 3s infinite ease-in-out;
+  }
+
+  .step-scale {
+    --label-w: 3em;
+    --input-h: 2.25em;
+    --thumb-d: var(--input-h);
+    --thumb-r: calc(0.5 * var(--thumb-d));
+    display: grid;
+    grid-row: 1;
+    grid-template-columns: var(--label-w) 1fr var(--label-w);
+    align-items: end;
+    gap: 0.3em;
+    color: #bababa;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: .75rem;
+    width: 100%;
+  }
+
+  .scale-bar {
+    grid-area: 1 / 2;
+    place-self: end center;
+    width: min(12em, 100%);
+    min-height: 1em;
+    background: linear-gradient(90deg, transparent 2px, #f0ba22 0) -1px/1em round;
+    clip-path:
+      polygon(0 calc(100% - 1px),
+        0 100%, 100% 100%, 100% 0);
+  }
+
+  .radio-toggle-btn {
+    font-size: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    transition: all 0.15s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* push to top */
+    align-items: center;
+    height: 100%;
+    padding-top: 0.3rem;
+  }
+
+  .radio-toggle-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    /* covers only top portion */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+    pointer-events: none;
+    /* let clicks pass through */
+  }
+
+  .tuning-dial::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    /* covers only top portion */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+    pointer-events: none;
+    /* let clicks pass through */
+  }
+
+  .radio-toggle-btn.active {
+    /* color: #fff; */
+    box-shadow:
+      inset 0 1px 2px rgba(0, 0, 0, 0.6);
+    transform: translateY(2px);
+  }
+
+  /* .radio-toggle-btn:hover {
+    background: #222;
+  } */
+
+  .radio-toggle-btn::after {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 4px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 50% 50%, #ffe680 0%, #ffca3a 50%, #e8a948 100%);
+    opacity: .2;
+    transition: opacity 0.3s ease;
+    box-shadow:
+      0 -1px 4px rgba(255, 200, 50, 0.5);
+  }
+
+  /* Light turns on when active */
+  .radio-toggle-btn.active::after {
+    opacity: 1;
+  }
+
+  .drawer {
+    box-shadow:
+      inset 0 2px 6px rgba(255, 255, 255, 0.3),
+      inset 0 -2px 2px rgba(0, 0, 0, 0.5),
+      0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .drawer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 6px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), transparent);
+  }
+}
+
+/*==============================
+  Animations
+===============================*/
+@keyframes zoomDrift {
+  0% {
+    background-position: 0% 0%;
+    background-size: 150%;
+  }
+
+  50% {
+    background-size: 152%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+    background-size: 150%;
+  }
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    box-shadow: 0 0 6px oklch(72.531% 0.11656 238.701), 0 0 12px oklch(72.531% 0.11656 238.701);
+  }
+
+  50% {
+    box-shadow: 0 0 2px oklch(72.531% 0.11656 238.701), 0 0 4px oklch(72.531% 0.11656 238.701);
+  }
+}
+
+/*==============================
+  Media Queries
+===============================*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    backdrop-filter: none !important;
+  }
+
+  body {
+    background-image: none !important;
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
