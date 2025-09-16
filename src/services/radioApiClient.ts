@@ -13,10 +13,10 @@ const HEALTH_CHECK_TTL = 60 * 60 * 1000 // 1 hour
 //*====== Health Check ======*
 const checkBackendHealth = async (): Promise<boolean> => {
   try {
-    const response = await fetch('/api/radio/health', {
-      signal: AbortSignal.timeout(3000)
+    const response = await axios.get('/api/radio/health', {
+      timeout: 5000
     })
-    return response.ok
+    return response.status === 200
   } catch (error) {
     console.log('Backend health check failed:', error)
     return false
