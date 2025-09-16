@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: trivia-game-frontend
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: ${VITE_API_URL}
