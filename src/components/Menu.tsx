@@ -24,7 +24,7 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn }: MenuProps) => {
   const { user, logout } = useAuth()
 
   const menuItems = [
-    { label: "Start Game", onClick: onFormStart },
+    { label: "Play the Game", onClick: onFormStart },
     user
       ? { label: "Logout", onClick:() => setOpenLogout(true) }
       : { label: "Login", onClick: () => setOpenLogin(true) },

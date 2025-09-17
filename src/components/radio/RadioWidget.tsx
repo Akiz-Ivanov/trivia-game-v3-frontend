@@ -156,7 +156,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
                 <div className="border-light h-1 rounded-full mt-2 w-24 mx-auto" />
 
                 {/* Power OFF button */}
-                <button
+                {/* <button
                   className="size-fit rounded-full p-1.5 absolute bottom-1 left-4 
                   text-sm inline-flex items-center justify-center gap-2 
                   text-[#e8a948] hover:text-error-foreground transition-colors duration-200"
@@ -172,7 +172,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
                   onClick={() => setIsOpen(false)}
                 >
                   Dock<Minimize className="size-5" />
-                </button>
+                </button> */}
 
               </div>
             </div>
