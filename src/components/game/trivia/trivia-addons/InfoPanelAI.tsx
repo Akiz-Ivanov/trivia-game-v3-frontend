@@ -6,7 +6,7 @@ const InfoPanelAI = ({ content, open }: { content: string, open: boolean }) => {
     const ref = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        if (!ref.current) return;
+        if (!ref.current || !open) return;
 
         const timeout = setTimeout(() => {
             ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -16,14 +16,20 @@ const InfoPanelAI = ({ content, open }: { content: string, open: boolean }) => {
         return () => clearTimeout(timeout)
     }, [open])
 
+    // Don't render at all when not open
+    if (!open) return null;
+
     return (
         <Accordion
             type="single"
-            collapsible value={open ? "ai-panel" : ""}
+            collapsible
+            value="ai-panel" // Always open when rendered
             className="w-full purple-bg rounded-aicard mt-2"
         >
             <AccordionItem value="ai-panel">
-                <AccordionTrigger className="sr-only">Hint/Info Panel</AccordionTrigger>
+                <AccordionTrigger className="sr-only">
+                    Hint/Info Panel
+                </AccordionTrigger>
                 <AccordionContent
                     ref={ref}
                     tabIndex={-1}

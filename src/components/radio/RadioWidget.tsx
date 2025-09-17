@@ -1,4 +1,4 @@
-import { BoomBox, CirclePower, Minimize, PauseCircle, PlayCircle, StepBack, StepForward } from "lucide-react"
+import { CirclePower, Minimize, PauseCircle, PlayCircle, StepBack, StepForward } from "lucide-react"
 import { useState, useRef, useEffect } from "react"
 import { Loader2 } from "lucide-react"
 import RadioDrawer from "./RadioDrawer"
@@ -8,6 +8,8 @@ import woodPattern from "@/assets/svgs/Wood.jpg"
 import Marquee from "react-fast-marquee"
 import { useRadioContext } from "@/hooks/useRadioContext"
 import UtilityButton from "./UtilityButton"
+import { cn } from "@/lib/utils"
+import radioIcon from "@/assets/svgs/radio-icon.svg"
 
 const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
 
@@ -60,7 +62,16 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
     : (howlError ? howlError : currentStation?.name || `No station selected. Loading popular stations.`)
 
   return (
-    <div ref={widgetRef} className="fixed bottom-2 right-2 z-50">
+    <div
+      ref={widgetRef}
+      className={cn(
+        "fixed z-50",
+        {
+          "bottom-2 right-2": isOpen,
+          "bottom-0 right-0": !isOpen
+        }
+      )}
+    >
       {isOpen ? (
         <div
           className="radio-wood-frame"
@@ -170,10 +181,17 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
       ) : (
         // Collapsed icon as trigger
         <button
+          type="button"
           onClick={() => setIsOpen(true)}
-          className="shadow-lg m-3 size-fit"
+          className="m-3 block p-0 bg-transparent min-h-0 min-w-0"
+          aria-label="Open Radio"
+          title="Open Radio"
         >
-          <BoomBox className="size-8" />
+          <img
+            src={radioIcon}
+            className="w-18 xs:w-22 sm:w-24 lg:w-28 h-auto shadow-lg block opacity-80 hover:opacity-100 transition-opacity duration-200"
+            alt="Radio Icon"
+          />
         </button>
       )
       }
