@@ -41,7 +41,7 @@ function App(): React.JSX.Element {
   //* ====== UI & Flow State ======
   const [screen, setScreen] = useState<Screen>("menu")
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true)
-  const [isRadioOn, setIsRadioOn] = useLocalStorageState<boolean>("isRadioOn", false)
+  const [isRadioOn, setIsRadioOn] = useLocalStorageState<boolean>("isRadioOn", true)
 
   //* ====== Function to handle form data changes ======
   const handleChange = (key: string, value: string) => {
