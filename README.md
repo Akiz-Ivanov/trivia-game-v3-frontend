@@ -1,6 +1,6 @@
 # 🧠 Trivia Flair 3.0
 
-[![Play Online](https://img.shields.io/badge/Play-Live-green)](https://trivia-game-v3-frontend.onrender.com/)
+[![Play Online](https://img.shields.io/badge/Play-Live-green?style=for-the-badge)](https://trivia-game-v3-frontend.onrender.com/)
 
 A full-stack trivia game with integrated radio player! Built with React, TypeScript, Node.js, and MongoDB. Features trivia gameplay, AI-powered hints, and a fully functional radio widget with thousands of live stations.
 
