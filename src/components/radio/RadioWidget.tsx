@@ -1,4 +1,4 @@
-import { BoomBox, PauseCircle, PlayCircle, StepBack, StepForward } from "lucide-react"
+import { BoomBox, CirclePower, Minimize, PauseCircle, PlayCircle, StepBack, StepForward } from "lucide-react"
 import { useState, useRef, useEffect } from "react"
 import { Loader2 } from "lucide-react"
 import RadioDrawer from "./RadioDrawer"
@@ -9,7 +9,7 @@ import Marquee from "react-fast-marquee"
 import { useRadioContext } from "@/hooks/useRadioContext"
 import UtilityButton from "./UtilityButton"
 
-const RadioWidget = () => {
+const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
@@ -143,6 +143,25 @@ const RadioWidget = () => {
 
                 {/* Decorative light */}
                 <div className="border-light h-1 rounded-full mt-2 w-24 mx-auto" />
+
+                {/* Power OFF button */}
+                <button
+                  className="size-fit rounded-full p-1.5 absolute bottom-1 left-4 
+                  text-sm inline-flex items-center justify-center gap-2 
+                  text-[#e8a948] hover:text-error-foreground transition-colors duration-200"
+                  onClick={powerOff}
+                >
+                  <CirclePower className="size-5" /> OFF
+                </button>
+
+                <button
+                  className="size-fit rounded-full p-1.5 absolute bottom-1 right-3 
+                  text-sm inline-flex items-center justify-center gap-2 
+                  text-[#e8a948] hover:text-chart-3 transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Dock<Minimize className="size-5" />
+                </button>
 
               </div>
             </div>

@@ -10,9 +10,11 @@ import { toast } from "sonner"
 
 type MenuProps = {
   onFormStart: () => void
+  toggleRadio: () => void
+  isRadioOn: boolean
 }
 
-const Menu = ({ onFormStart }: MenuProps) => {
+const Menu = ({ onFormStart, toggleRadio, isRadioOn }: MenuProps) => {
 
   const [openLogin, setOpenLogin] = useState(false)
   const [openLogout, setOpenLogout] = useState(false)
@@ -26,6 +28,7 @@ const Menu = ({ onFormStart }: MenuProps) => {
     user
       ? { label: "Logout", onClick:() => setOpenLogout(true) }
       : { label: "Login", onClick: () => setOpenLogin(true) },
+      { label: isRadioOn ? "Turn Radio Off" : "Turn Radio On", onClick: toggleRadio },
     { label: "Settings", onClick: () => setOpenSettings(true) },
     { label: "About", onClick: () => setOpenAbout(true) },
   ]

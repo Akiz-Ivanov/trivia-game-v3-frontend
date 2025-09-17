@@ -20,6 +20,8 @@ import type { TriviaQuestion } from './types/trivia-db.types'
 import type { GameFormData } from "./types/game-form.types"
 import type { Screen } from './types/screen.types'
 import { RadioProvider } from './context/RadioProvider';
+import { toast } from 'sonner';
+import useLocalStorageState from './hooks/useLocalStorageState';
 
 function App(): React.JSX.Element {
 
@@ -39,6 +41,7 @@ function App(): React.JSX.Element {
   //* ====== UI & Flow State ======
   const [screen, setScreen] = useState<Screen>("menu")
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true)
+  const [isRadioOn, setIsRadioOn] = useLocalStorageState<boolean>("isRadioOn", false)
 
   //* ====== Function to handle form data changes ======
   const handleChange = (key: string, value: string) => {
@@ -133,6 +136,8 @@ function App(): React.JSX.Element {
           {screen === "menu" && (
             <Menu
               onFormStart={handleFormStart}
+              toggleRadio={() => setIsRadioOn(prev => !prev)}
+              isRadioOn={isRadioOn}
             // startGame={startGame}
             // onChange={handleChange}
             // isFirstRender={isFirstRender}
@@ -155,9 +160,14 @@ function App(): React.JSX.Element {
           <Toaster
             position="bottom-center"
           />
-          <RadioProvider>
-            <RadioWidget />
-          </RadioProvider>
+          {isRadioOn && (
+            <RadioProvider>
+              <RadioWidget powerOff={() => {
+                setIsRadioOn(false)
+                toast.info("Radio turned off! You can turn it back on in the menu.")
+              }} />
+            </RadioProvider>
+          )}
         </ErrorBoundary>
       </div>
     </main>
