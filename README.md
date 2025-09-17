@@ -32,6 +32,8 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 - 💾 Caching for improved performance
 - 🔄 Exponential backoff for error handling
 
+[Backend Repository](https://github.com/Akiz-Ivanov/trivia-game-v3-backend)
+
 ## 🎯 Features
 
 ### Trivia Game
@@ -58,6 +60,10 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 - **Howler.js** for audio handling
 - **React Hook Form** + **Zod** for validation
 - **Axios** for API calls
+- **React Virtuoso** for performant lists
+- **React Fast Marquee** for scrolling text/UI effects
+- **Fuse.js** for search & fuzzy matching
+- **Sonner** for notifications (if visible to users)
 
 ### Backend
 - **Node.js** + **Express**
@@ -96,13 +102,12 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 - **OpenTriviaDB** for trivia questions  
 - **DeepInfra** for AI-powered hints  
 - **Radio Browser API** for radio station data  
-- **MongoDB Atlas** for database hosting  
 
 ### Assets & Libraries
-- **Storyset** for illustrations  
 - **Lucide** for icons  
-- **ShadCN** for UI components  
-- **Framer Motion** for animations
+- **Storyset** for illustrations  
+- **Freepik** for SVGs 
+- **Vecteezy** for additional vector graphics
 
 ## Installation
 

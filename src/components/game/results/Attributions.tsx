@@ -104,7 +104,7 @@ const Attributions = ({ open, onOpenChange }: AttributionsProps) => {
 
                 <section className="space-y-2">
                     <h2>
-                        - Game Illustrations
+                        - Game Illustrations and Vectors
                     </h2>
 
                     <ul className="text-sm">
@@ -124,6 +124,11 @@ const Attributions = ({ open, onOpenChange }: AttributionsProps) => {
                         <li>
                             <ExternalLink href="https://www.freepik.com/free-vector/olympian-gods-flat-colored-composition-gods-standing-natural-landscape-against-background-mountains-forests-water-vector-illustration_38754454.htm#fromView=keyword&page=1&position=2&uuid=af984101-90ac-41c8-b58f-3df7996e3e85&query=Mythology+Olympus+Illustration">
                                 Image by macrovector on Freepik
+                            </ExternalLink>
+                        </li>
+                        <li>
+                            <ExternalLink href="https://www.freepik.com/free-vector/radio-devices-set_4445060.htm">
+                                Radio devices set by pch.vector - Freepik
                             </ExternalLink>
                         </li>
                     </ul>
