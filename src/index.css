@@ -154,7 +154,8 @@
 
   --border: oklch(58.9% 0.13 239);
   --input: oklch(65% 0.18 200);
-  --ring: oklch(76.5% 0.151 229 / 0.7);
+  /* --ring: oklch(76.5% 0.151 229 / 0.7); */
+  --ring: oklch(82.5% 0.08 260);
   --progress-track: oklch(70% 0.01 270);
 
   --chart-1: oklch(76.46% 0.151 229.43);
@@ -205,7 +206,7 @@
 
   --border: oklch(58.9% 0.13 239);
   --input: oklch(65% 0.18 200);
-  --ring: oklch(58.9% 0.13 239);
+  --ring: oklch(82.5% 0.08 260);
   --progress-track: oklch(70% 0.01 270);
 
   --chart-1: oklch(76.46% 0.151 229.43);
