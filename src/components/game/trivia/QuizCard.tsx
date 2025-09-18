@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import { cn } from "@/lib/utils"
-import { ArrowRight, BarChart2 } from "lucide-react"
+import { ArrowRight, BarChart2, Eye, EyeOff } from "lucide-react"
 
 import { getPreloadedCategoryBg } from "@/assets/imports.ts"
 import shuffleArray from "@/utils/shuffle.js"
@@ -16,15 +16,17 @@ import type { Category } from "@/types/imports.types.js"
 import { motion } from "framer-motion"
 
 type QuizCardProps = {
-    questionData: TriviaQuestion,
-    answers: string[],
-    processAnswerSelection: (answer: string, isCorrect: boolean) => void,
-    nextQuestion: () => void,
-    isLastQuestion: boolean,
-    selectedAnswer: string | null,
-    currentQuestionIndex: number,
+    questionData: TriviaQuestion
+    answers: string[]
+    processAnswerSelection: (answer: string, isCorrect: boolean) => void
+    nextQuestion: () => void
+    isLastQuestion: boolean
+    selectedAnswer: string | null
+    currentQuestionIndex: number
     numOfQuestions: number
-    handleShowResults: () => void,
+    handleShowResults: () => void
+    isMetaVisible: boolean
+    toggleMetaVisibility: () => void
 }
 
 export default function QuizCard({
@@ -37,6 +39,8 @@ export default function QuizCard({
     currentQuestionIndex,
     numOfQuestions,
     handleShowResults,
+    isMetaVisible,
+    toggleMetaVisibility
 }: QuizCardProps): React.JSX.Element {
 
     //* State values
@@ -130,7 +134,7 @@ export default function QuizCard({
             key={questionData.id}
             asMotion={true}
             className={cn(
-                "game-card gap-3-16 text-15-18 px-16-64 py-6 md:p-6",
+                "game-card gap-3-16 text-15-18 px-16-64 py-8 md:p-6",
                 {
                     "xs:shadow-hard": questionData.difficulty === "hard",
                     "xs:shadow-medium": questionData.difficulty === "medium",
@@ -164,13 +168,48 @@ export default function QuizCard({
                 {selectedAnswer ? (selectedAnswer === questionData.correct_answer ? "Correct answer selected." : "Incorrect answer selected.") : ""}
             </p>
 
+            {/* ====== Meta Toggle Button ====== */}
+            <div className="absolute top-2 right-10 xs:top-2.5 xs:right-2">
+                <button
+                    type="button"
+                    onClick={toggleMetaVisibility}
+                    className={cn(
+                        "rounded-full bg-popover text-chart-1/50",
+                        "transition-all duration-400 focus:outline-none focus:ring-2 focus:ring-ring/50",
+                        "opacity-50 hover:opacity-100 hover:outline-1 hover:outline-ring",
+                        "flex items-center justify-center overflow-hidden",
+                        "focus:opacity-100 focus-within:w-[7.5rem]",
+                        "size-8 hover:w-[7.5rem] group relative"
+                    )}
+                    aria-label={isMetaVisible ? "Hide game information" : "Show game information"}
+                >
+                    {/* Text - visible on hover */}
+                    <span className={cn(
+                        "whitespace-nowrap text-sm font-medium",
+                        "transition-all duration-200",
+                        "opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-[5rem]",
+                        "group-focus:opacity-100 group-focus:max-w-[5rem]",
+                        "ml-2 mr-6"
+                    )}>
+                        {isMetaVisible ? "Hide Info" : "Show Info"}
+                    </span>
+
+                    {/* Icon - centered with absolute positioning */}
+                    <span className="absolute xs:right-1.5 flex-shrink-0">
+                        {isMetaVisible ? <EyeOff className="size-6 xs:size-5" /> : <Eye className="size-6 xs:size-5" />}
+                    </span>
+                </button>
+            </div>
+
             {/* ====== Meta ====== */}
-            <GameMeta
-                category={questionData.category}
-                difficulty={questionData.difficulty}
-                currentQuestionIndex={currentQuestionIndex}
-                numOfQuestions={numOfQuestions}
-            />
+            {isMetaVisible && (
+                <GameMeta
+                    category={questionData.category}
+                    difficulty={questionData.difficulty}
+                    currentQuestionIndex={currentQuestionIndex}
+                    numOfQuestions={numOfQuestions}
+                />
+            )}
 
             {/* ====== Question ====== */}
             <h2

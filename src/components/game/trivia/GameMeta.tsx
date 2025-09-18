@@ -8,6 +8,7 @@ type GameMetaProps = {
 }
 
 const GameMeta = ({ numOfQuestions, currentQuestionIndex, category, difficulty }: GameMetaProps): React.JSX.Element => {
+    
     return (
         <aside 
             className="game-card__meta flex flex-col items-center justify-center w-full italic gap-2"

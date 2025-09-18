@@ -14,14 +14,14 @@ import { useSoundManager } from './hooks/useSoundManager';
 import useHoverDetection from './hooks/useHoverDetection';
 import { Toaster } from "@/components/ui/sonner"
 import RadioWidget from './components/radio/RadioWidget';
+import { RadioProvider } from './context/RadioProvider';
+import { toast } from 'sonner';
+import useLocalStorageState from './hooks/useLocalStorageState';
 
 //* ====== Types ======
 import type { TriviaQuestion } from './types/trivia-db.types'
 import type { GameFormData } from "./types/game-form.types"
 import type { Screen } from './types/screen.types'
-import { RadioProvider } from './context/RadioProvider';
-import { toast } from 'sonner';
-import useLocalStorageState from './hooks/useLocalStorageState';
 
 function App(): React.JSX.Element {
 
@@ -118,7 +118,7 @@ function App(): React.JSX.Element {
   }
 
   return (
-    <main className='w-full xs:px-16-128 xs:py-8 overflow-x-hidden'>
+    <main className='w-full h-fit xs:px-16-128 xs:py-8 overflow-x-hidden'>
       <div className='flex flex-col items-center justify-center w-full max-w-[30rem] xs:max-w-[37.5rem]'>
         {screen === "game" || screen === "form" ?
           <ReturnToMenu

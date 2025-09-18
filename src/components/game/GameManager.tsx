@@ -21,8 +21,10 @@ const GameManager = ({ triviaData, resetGame }: GameManagerProps): React.JSX.Ele
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)   // Index of the current question
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)   // Selected answer by the user
     const [gameScreen, setGameScreen] = useState<GameScreen>("quiz")
-
     const [score, setScore] = useState<number>(0)  // Current score
+    const [isMetaVisible, setIsMetaVisible] = useState<boolean>(true)
+
+    const toggleMetaVisibility = () => setIsMetaVisible(prev => !prev)
 
     //* ====== Game Config ======
     const numOfQuestions: number = triviaData.length
@@ -73,6 +75,8 @@ const GameManager = ({ triviaData, resetGame }: GameManagerProps): React.JSX.Ele
                         currentQuestionIndex={currentQuestionIndex}
                         numOfQuestions={numOfQuestions}
                         handleShowResults={handleShowResults}
+                        isMetaVisible={isMetaVisible}
+                        toggleMetaVisibility={toggleMetaVisibility}
                     />
                 </AnimatePresence>
             )}
