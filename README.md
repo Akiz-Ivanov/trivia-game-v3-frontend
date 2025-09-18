@@ -8,6 +8,24 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 
 ![Trivia Flair Screenshot](./screenshots/trivia-collage.jpg)
 
+## 📚 Table of Contents
+
+- [✨ What's New in 3.0](#-whats-new-in-30)
+  - [🎵 Radio Widget](#-radio-widget)
+  - [🔐 User System](#-user-system)
+  - [🚀 Backend Infrastructure](#-backend-infrastructure)
+- [🎯 Features](#-features)
+  - [Trivia Game](#trivia-game)
+  - [Radio Player](#radio-player)
+- [🛠️ Tech Stack](#️-tech-stack)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+- [🎮 How to Play](#-how-to-play)
+- [🙏 Acknowledgments](#-acknowledgments)
+  - [APIs & Services](#apis--services)
+  - [Assets & Libraries](#assets--libraries)
+- [Installation](#installation)
+
 ## ✨ What's New in 3.0
 
 ### 🎵 **Radio Widget**
