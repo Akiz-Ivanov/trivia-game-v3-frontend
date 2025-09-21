@@ -227,7 +227,7 @@ const useRadio = (options: UseRadioOptions = {}) => {
     setActiveList: (list: Station[], type: 'search' | 'favorites') => {
       setActiveList(list)
       setActiveListType(type)
-    }
+    },
   }
 }
 

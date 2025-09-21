@@ -127,23 +127,36 @@ const Attributions = ({ open, onOpenChange }: AttributionsProps) => {
                             </ExternalLink>
                         </li>
                         <li>
-                            <ExternalLink href="https://www.freepik.com/free-vector/radio-devices-set_4445060.htm">
-                                Radio devices set by pch.vector - Freepik
+                            <ExternalLink href="https://www.freepik.com/free-vector/cute-cat-boombox-music-with-hat-cartoon-vector-icon-illustration-animal-technology-isolated-flat_415487506.htm#fromView=search&page=1&position=4&uuid=13cfe99a-8990-4016-8ab1-6e38d8b6cb4a&query=Neon+radio">
+                                Cat Boombox Vector by catalyststuff on Freepik
                             </ExternalLink>
                         </li>
                     </ul>
                     <aside className="w-full flex flex-row justify-between items-center gap-4 mt-4">
 
                         <ExternalLink href="https://storyset.com/" title="Illustrations provided by Storyset">
-                            <img src="https://cdn.brandfetch.io/idM503QeTh/theme/light/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Storyset logo." className="w-34 hover:scale-105 transition-transform duration-300 ease-in-out" />
+                            <img
+                                src="https://cdn.brandfetch.io/idM503QeTh/theme/light/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B"
+                                alt="Storyset logo."
+                                className="w-34 hover:scale-105 transition-transform duration-300 ease-in-out"
+                            />
                         </ExternalLink>
 
                         <ExternalLink href="https://vecteezy.com/" title="Illustrations provided by Vecteezy">
-                            <img src="https://cdn.brandfetch.io/idfGEiSEhT/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Vecteezy logo." className="w-34 hover:scale-105 transition-transform duration-300 ease-in-out invert brightness-[2.2]" />
+                            <img
+                                src="https://cdn.brandfetch.io/idfGEiSEhT/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B"
+                                alt="Vecteezy logo."
+                                className="w-34 hover:scale-105 transition-transform 
+                                    duration-300 ease-in-out invert brightness-[2.2]"
+                            />
                         </ExternalLink>
 
                         <ExternalLink href="https://www.freepik.com/" title="Illustrations provided by Freepik">
-                            <img src="https://cdn.brandfetch.io/id6KQUPKmw/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Freepik logo." className="w-34 hover:scale-105 transition-transform duration-300 ease-in-out" />
+                            <img
+                                src="https://cdn.brandfetch.io/id6KQUPKmw/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B"
+                                alt="Freepik logo."
+                                className="w-34 hover:scale-105 transition-transform duration-300 ease-in-out"
+                            />
                         </ExternalLink>
 
                     </aside>

@@ -178,21 +178,23 @@ export default function QuizCard({
                         "transition-all duration-400 focus:outline-none focus:ring-2 focus:ring-ring/50",
                         "opacity-50 hover:opacity-100 hover:outline-1 hover:outline-ring",
                         "flex items-center justify-center overflow-hidden",
-                        "focus:opacity-100 focus-within:w-[7.5rem]",
-                        "size-8 hover:w-[7.5rem] group relative"
+                        "focus:opacity-100 xs:focus-within:w-[7.5rem]",
+                        "size-8 xs:hover:w-[7.5rem] group relative"
                     )}
                     aria-label={isMetaVisible ? "Hide game information" : "Show game information"}
                 >
-                    {/* Text - visible on hover */}
-                    <span className={cn(
-                        "whitespace-nowrap text-sm font-medium",
-                        "transition-all duration-200",
-                        "opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-[5rem]",
-                        "group-focus:opacity-100 group-focus:max-w-[5rem]",
-                        "ml-2 mr-6"
-                    )}>
-                        {isMetaVisible ? "Hide Info" : "Show Info"}
-                    </span>
+                    {/* Text - visible on hover or focus on larger screens */}
+                    {isXs && (
+                        <span className={cn(
+                            "whitespace-nowrap text-sm font-medium",
+                            "transition-all duration-200",
+                            "opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-[5rem]",
+                            "group-focus:opacity-100 group-focus:max-w-[5rem]",
+                            "ml-2 mr-6"
+                        )}>
+                            {isMetaVisible ? "Hide Info" : "Show Info"}
+                        </span>
+                    )}
 
                     {/* Icon - centered with absolute positioning */}
                     <span className="absolute xs:right-1.5 flex-shrink-0">

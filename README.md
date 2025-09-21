@@ -74,6 +74,7 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 - **React 19** + TypeScript
 - **Tailwind CSS 4.0** with custom themes
 - **Framer Motion** for animations
+- **SVGR** for SVG component transformation
 - **ShadCN/Radix UI** components
 - **Howler.js** for audio handling
 - **React Hook Form** + **Zod** for validation

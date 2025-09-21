@@ -84,19 +84,8 @@ const StationList = () => {
               data={stations}
               style={{ height: "100%", margin: "0.25rem" }}
               initialTopMostItemIndex={0}
-              // components={{
-              //   List: (({ style, children }) => (
-              //     <ul role="list" style={style}>
-              //       {children}
-              //     </ul>
-              //   )) as React.FC<React.ComponentPropsWithoutRef<'ul'>>,
-
-              //   Item: (({ children, ...rest }) => (
-              //     <li role="listitem" {...rest}>
-              //       {children}
-              //     </li>
-              //   )) as React.FC<React.ComponentPropsWithoutRef<'li'>>
-              // }}
+              role="list"
+              aria-label={`Radio stations search results, ${stations.length} stations found`}
               itemContent={(index, station) => (
                 <StationItem
                   key={`station.stationuuid-${index}`}
@@ -110,15 +99,31 @@ const StationList = () => {
             />
           ) : (
             loadingFetch ? (
-              <p className="h-full flex items-center justify-center">
+              <div
+                role="status"
+                aria-live="polite"
+                className="h-full flex items-center justify-center"
+              >
                 <LoadingScreen />
-              </p>
+                <span className="sr-only">Loading radio stations...</span>
+              </div>
             ) : (
               fetchError ? (
-                <p className="h-full flex items-center justify-center">
+                <div
+                  role="alert"
+                  aria-live="assertive"
+                  className="h-full flex items-center justify-center text-red-400 p-4 text-center text-base"
+                >
                   {fetchError}
-                </p>
-              ) : null
+                </div>
+              ) : (
+                <div
+                  role="status"
+                  className="h-full flex items-center justify-center text-amber-400 p-4 text-center"
+                >
+                  No stations found. Try different search.
+                </div>
+              )
             )
           )
           }
@@ -129,6 +134,8 @@ const StationList = () => {
             <Virtuoso
               data={favorites}
               style={{ height: "100%" }}
+              role="list"
+              aria-label={`Favorite radio stations, ${favorites.length} favorites`}
               itemContent={(index, station) => (
                 <StationItem
                   key={`station.stationuuid-${index}`}
@@ -141,10 +148,13 @@ const StationList = () => {
               )}
             />
           ) : (
-            <p className="h-full flex items-center justify-center">
-              <Star />
-              No favorites yet
-            </p>
+            <div
+              role="status"
+              className="h-full p-4 flex flex-col items-center justify-center text-amber-400 gap-2 text-sm text-center"
+            >
+              <Star aria-hidden="true" size={18} />
+              No favorites yet. Click the star icon next to any station to add it to favorites.
+            </div>
           )
           }
         </TabsContent>

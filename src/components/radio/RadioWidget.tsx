@@ -9,14 +9,13 @@ import Marquee from "react-fast-marquee"
 import { useRadioContext } from "@/hooks/useRadioContext"
 import UtilityButton from "./UtilityButton"
 import { cn } from "@/lib/utils"
-import radioIcon from "@/assets/svgs/radio-icon.svg"
+import RadioCatSvg from "@/assets/svgs/radio-cat.svg?react"
 
 const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const [openScreen, setOpenScreen] = useState<boolean>(false)
-  const [openFavorites, setOpenFavorites] = useState<boolean>(false)
 
   const widgetRef = useRef<HTMLDivElement>(null)
 
@@ -31,18 +30,34 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
     loadingHowl,
     howlError,
     mode,
-    stationQuery
+    stationQuery,
+    toggleFavorite,
+    isFavorite,
   } = useRadioContext()
 
-  // useEffect(() => {
-  //   const handleClickOutside = (e: MouseEvent) => {
-  //     if (widgetRef.current && !widgetRef.current.contains(e.target as Node)) {
-  //       setIsOpen(false)
-  //     }
-  //   }
-  //   document.addEventListener("mousedown", handleClickOutside)
-  //   return () => document.removeEventListener("mousedown", handleClickOutside)
-  // }, [])
+  //*====== Close radio widget on click outside ======
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Element
+
+      //* Check if click is inside the widget
+      if (widgetRef.current && !widgetRef.current.contains(target)) {
+        //* Check if click is on popover content or combobox trigger
+        const isPopoverClick = target.closest('[role="combobox"]') ||
+          target.closest('[data-radix-popper-content-wrapper]') ||
+          target.closest('[role="listbox"]') ||
+          target.closest('[role="option"]')
+
+        //* Only close if it's not a popover-related click
+        if (!isPopoverClick) {
+          setIsOpen(false)
+        }
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   useEffect(() => {
     if (mode) {
@@ -82,8 +97,6 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
 
               <RadioDrawer openDrawer={openDrawer} openScreen={openScreen} />
 
-              {/* <RadioScreen openScreen={openScreen} /> */}
-
               {/* Top-half */}
               <div className="h-1/2 radio-top-half py-3.5 px-4 flex flex-col gap-3.5">
 
@@ -109,10 +122,13 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
                   </UtilityButton>
 
                   <UtilityButton
-                    onClick={() => setOpenFavorites(!openFavorites)}
-                    isPressed={openFavorites}
+                    onClick={() => {
+                      if (!currentStation) return
+                      toggleFavorite(currentStation)
+                    }}
+                    isPressed={isFavorite(currentStation?.stationuuid || "")}
                   >
-                    Favorites
+                    Favorite
                   </UtilityButton>
 
                 </div>
@@ -152,47 +168,50 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
                   </button>
                 </div>
 
-                {/* Decorative light */}
-                <div className="border-light h-1 rounded-full mt-2 w-24 mx-auto" />
-
-                {/* Power OFF button */}
-                <button
-                  className="size-fit rounded-full p-1.5 absolute bottom-1 left-4 
-                  text-sm inline-flex items-center justify-center gap-2 
-                  text-[#e8a948] hover:text-error-foreground transition-colors duration-200"
-                  onClick={powerOff}
+                <div className="radio-bottom-panel py-0.5 px-2 mt-0.5
+                  flex flex-row justify-center items-center -mb-3 relative
+                  rounded-t-[1.2rem] bg-gradient-to-b from-[#2a2a2a] via-[#111] via-40% to-[#111] 
+                  shadow-[inset_0_2px_4px_rgba(255,255,255,0.1),inset_0_-2px_4px_rgba(0,0,0,0.8),0_2px_4px_rgba(0,0,0,0.5)]"
                 >
-                  <CirclePower className="size-5" /> OFF
-                </button>
 
-                <button
-                  className="size-fit rounded-full p-1.5 absolute bottom-1 right-3 
-                  text-sm inline-flex items-center justify-center gap-2 
+                  {/* Power OFF button */}
+                  <button
+                    className="rounded-full
+                    text-sm inline-flex items-center justify-center gap-1 pl-1
+                    text-[#e8a948] hover:text-error-foreground transition-colors duration-200"
+                    onClick={powerOff}
+                  >
+                    OFF <CirclePower className="size-4" />
+                  </button>
+
+                  {/* Decorative light */}
+                  <div className="border-light h-1 rounded-full w-20 mx-auto" />
+
+                  <button
+                    className="rounded-full bottom-1 right-3 
+                  text-sm inline-flex items-center pr-1 justify-center gap-1 
                   text-[#e8a948] hover:text-chart-3 transition-colors duration-200"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Dock<Minimize className="size-5" />
-                </button>
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Minimize className="size-4" /> Dock
+                  </button>
+                </div>
 
               </div>
             </div>
           </div>
         </div>
       ) : (
-        // Collapsed icon as trigger
-        <button
-          type="button"
+        <RadioCatSvg
           onClick={() => setIsOpen(true)}
-          className="m-3 block p-0 bg-transparent min-h-0 min-w-0"
-          aria-label="Open Radio"
+          className="w-18 xs:w-22 sm:w-24 lg:w-42 h-auto shadow-lg cursor-pointer
+            transition-all duration-300
+            [pointer-events:none] [&_*]:[pointer-events:visiblePainted]
+            hover:-translate-y-1.5 
+            hover:[filter:drop-shadow(0_0_15px_rgba(139,92,246,0.6))_drop-shadow(0_0_10px_rgba(59,130,246,0.4))]
+            hover:brightness-110"
           title="Open Radio"
-        >
-          <img
-            src={radioIcon}
-            className="w-18 xs:w-22 sm:w-24 lg:w-28 h-auto shadow-lg block opacity-80 hover:opacity-100 transition-opacity duration-200"
-            alt="Radio Icon"
-          />
-        </button>
+        />
       )
       }
     </div >

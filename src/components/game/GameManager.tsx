@@ -17,9 +17,9 @@ import type { GameScreen } from '@/types/screen.types'
 const GameManager = ({ triviaData, resetGame }: GameManagerProps): React.JSX.Element => {
 
     //* ====== Game State ======
-    const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([])    // Shuffled answers for current question
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)   // Index of the current question
-    const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)   // Selected answer by the user
+    const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([])
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
+    const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
     const [gameScreen, setGameScreen] = useState<GameScreen>("quiz")
     const [score, setScore] = useState<number>(0)  // Current score
     const [isMetaVisible, setIsMetaVisible] = useState<boolean>(true)

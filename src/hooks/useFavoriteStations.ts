@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react"
+import { useCallback, useMemo } from "react"
 import useLocalStorageState from "@/hooks/useLocalStorageState"
 import type { Station } from "@/types/radio.types"
 
@@ -24,13 +24,9 @@ const useFavoriteStations = () => {
     favorites,
     toggleFavorite,
     isFavorite
-  }), [favorites, toggleFavorite, isFavorite]); // Only change when these change
+  }), [favorites, toggleFavorite, isFavorite]) // Only change when these change
 
-  useEffect(() => {
-    console.log('Context value changed');
-  }, [value])
-
-  return value;
+  return value
 }
 
 export default useFavoriteStations

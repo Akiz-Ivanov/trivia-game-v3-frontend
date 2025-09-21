@@ -17,17 +17,6 @@ const VolumeSlider = ({ volume, onSetVolume }: VolumeSliderProps) => {
       </div>
 
       {/* Volume slider */}
-      {/* <input
-        type="range"
-        min={0}
-        max={1}
-        step={0.01}
-        value={volume}
-        onChange={(e) => onSetVolume(parseFloat(e.target.value))}
-        className="w-full mt-2 px-3.5"
-        list="marks"
-      /> */}
-
       <Slider
         defaultValue={[50]}
         min={0}
