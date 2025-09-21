@@ -6,7 +6,9 @@ import { SettingsProvider } from './context/SettingsProvider.tsx'
 import { AuthProvider } from './context/AuthProvider.tsx'
 import axios from 'axios';
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+if (import.meta.env.PROD) {
+  axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,5 +17,5 @@ createRoot(document.getElementById('root')!).render(
         <App />
       </SettingsProvider>
     </AuthProvider>
-  </StrictMode>,
+  </StrictMode>
 )

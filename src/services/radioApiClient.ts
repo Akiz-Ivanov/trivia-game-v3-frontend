@@ -8,13 +8,13 @@ const BACKEND_API_BASE = "/api/radio"
 // Shared global state
 let useBackend = true
 let lastHealthCheck = 0
-const HEALTH_CHECK_TTL = 60 * 60 * 1000 // 1 hour
+const HEALTH_CHECK_TTL = 2 * 60 * 1000 // 2 minutes
 
 //*====== Health Check ======*
 const checkBackendHealth = async (): Promise<boolean> => {
   try {
     const response = await axios.get('/api/radio/health', {
-      timeout: 5000
+      timeout: 10000
     })
     return response.status === 200
   } catch (error) {
@@ -27,8 +27,17 @@ const checkBackendHealth = async (): Promise<boolean> => {
 const getApiBase = async (): Promise<string> => {
   const now = Date.now()
 
-  if (useBackend && (now - lastHealthCheck > HEALTH_CHECK_TTL || lastHealthCheck === 0)) {
+  //* - If using backend: check every 2 minutes to detect if it goes down
+  //* - If using direct API: check every 2 minutes to see if backend is back up
+  if (now - lastHealthCheck > HEALTH_CHECK_TTL || lastHealthCheck === 0) {
     const isBackendHealthy = await checkBackendHealth()
+
+    if (useBackend && !isBackendHealthy) {
+      console.log('Backend went down, switching to direct API')
+    } else if (!useBackend && isBackendHealthy) {
+      console.log('Backend is back up, switching from direct API to backend')
+    }
+
     useBackend = isBackendHealthy
     lastHealthCheck = now
   }
@@ -47,7 +56,7 @@ const getWithRetry = async <T>(
     const apiBase = await getApiBase()
     const res = await axios.get<T>(`${apiBase}${endpoint}`, {
       ...config,
-      timeout: 8000
+      timeout: useBackend ? 12000 : 8000
     })
     return res.data
 
@@ -72,6 +81,7 @@ const getWithRetry = async <T>(
     if (useBackend && axios.isAxiosError(error) && !error.response) {
       console.log('Switching to direct API after retries failed')
       useBackend = false
+      lastHealthCheck = 0
       return getWithRetry<T>(endpoint, config, retries, baseDelay)
     }
 
