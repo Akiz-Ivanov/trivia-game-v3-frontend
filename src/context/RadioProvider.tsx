@@ -15,7 +15,7 @@ export const RadioProvider = ({ children }: { children: ReactNode }) => {
 
   const favoriteStations = useFavoriteStations()
 
-  const { favorites, toggleFavorite, isFavorite } = favoriteStations
+  const { favorites, toggleFavorite, isFavorite, reorderFavorites } = favoriteStations
 
   const value: UseRadioReturn = useMemo(() => ({
     ...radio,
@@ -27,7 +27,8 @@ export const RadioProvider = ({ children }: { children: ReactNode }) => {
     setLimit,
     favorites,
     toggleFavorite,
-    isFavorite
+    isFavorite,
+    reorderFavorites
   }), [radio, mode, stationQuery, limit])
 
   return (

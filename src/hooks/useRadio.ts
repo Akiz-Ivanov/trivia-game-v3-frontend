@@ -8,6 +8,7 @@ import {
 } from "@/services/radioService"
 
 import type { Station, UseRadioOptions } from "@/types/radio.types"
+import useLocalStorageState from "./useLocalStorageState"
 
 const useRadio = (options: UseRadioOptions = {}) => {
   const { mode = "popular", search = "", limit } = options
@@ -15,7 +16,7 @@ const useRadio = (options: UseRadioOptions = {}) => {
   const [stations, setStations] = useState<Station[]>([])
   const [currentStationId, setCurrentStationId] = useState<string | undefined>(undefined)
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
-  const [volume, setVolume] = useState<number>(0.5)
+  const [volume, setVolume] = useLocalStorageState<number>("radio-volume", 0.5)
   const [currentStationInfo, setCurrentStationInfo] = useState<Station | null>(null)
   const [activeList, setActiveList] = useState<Station[]>(stations)
   const [activeListType, setActiveListType] = useState<'search' | 'favorites'>('search')
@@ -29,6 +30,7 @@ const useRadio = (options: UseRadioOptions = {}) => {
   const audioRetryRef = useRef<boolean>(false)
   const abortControllerRef = useRef<AbortController | null>(null)
   const hasFetchedInitially = useRef<boolean>(false)
+  const hasTriedFavoritesFallback = useRef<boolean>(false)
 
   const currentStation = useMemo(() =>
     stations.find(s => s.stationuuid === currentStationId) || currentStationInfo,
@@ -36,6 +38,16 @@ const useRadio = (options: UseRadioOptions = {}) => {
   )
   
   const currentStationUrl = useRef<string>("")
+
+  const getFavoriteStations = useCallback((): Station[] => {
+    try {
+      const favorites = localStorage.getItem('radio-favorites') // Same key as your hook
+      return favorites ? JSON.parse(favorites) : []
+    } catch (error) {
+      console.error('Failed to load favorites:', error)
+      return []
+    }
+  }, [])
   
   //*====== Fetch stations ======
   useEffect(() => {
@@ -52,6 +64,7 @@ const useRadio = (options: UseRadioOptions = {}) => {
 
       setLoadingFetch(true)
       setFetchError(null)
+      hasTriedFavoritesFallback.current = false
 
       try {
         let data: Station[] = []
@@ -75,6 +88,8 @@ const useRadio = (options: UseRadioOptions = {}) => {
 
         if (!signal.aborted) {
           setStations(data)
+          setActiveList(data)
+          setActiveListType('search')
           hasFetchedInitially.current = true
 
           // If this is the first fetch, select the first station
@@ -86,7 +101,24 @@ const useRadio = (options: UseRadioOptions = {}) => {
       } catch (err) {
         if (!(err instanceof DOMException && err.name === "AbortError")) {
           console.error("Failed to fetch stations:", err)
-          if (!signal.aborted) setFetchError("Failed to load stations")
+          if (!signal.aborted) {
+            setFetchError("Failed to load stations")
+
+            if (!hasTriedFavoritesFallback.current && !currentStationId) {
+              hasTriedFavoritesFallback.current = true
+              const favorites = getFavoriteStations()
+
+              if (favorites.length > 0) {
+                console.log("APIs failed, falling back to favorites")
+                setStations(favorites)
+                setCurrentStationId(favorites[0].stationuuid)
+                setCurrentStationInfo(favorites[0])
+                setActiveList(favorites)
+                setActiveListType('favorites')
+                setFetchError("Using your favorites (APIs unavailable)")
+              }
+            }
+          }
         }
       } finally {
         if (!signal.aborted) setLoadingFetch(false)

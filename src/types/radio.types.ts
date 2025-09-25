@@ -36,9 +36,10 @@ export type UseRadioReturn = {
   setStationQuery: (query: string) => void
   limit: number | undefined
   setLimit: (limit: number | undefined) => void,
+  activeList: Station[]
+  activeListType: 'search' | 'favorites'
   favorites: Station[]
   toggleFavorite: (station: Station) => void
   isFavorite: (uuid: string) => boolean
-  activeList: Station[]
-  activeListType: 'search' | 'favorites'
+  reorderFavorites: (newOrder: Station[]) => void
 }

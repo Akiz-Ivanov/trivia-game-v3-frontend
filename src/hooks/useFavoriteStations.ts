@@ -20,11 +20,16 @@ const useFavoriteStations = () => {
     [favorites]
   )
 
+  const reorderFavorites = useCallback((newOrder: Station[]) => {
+    setFavorites(newOrder)
+  }, [setFavorites])
+
   const value = useMemo(() => ({
     favorites,
     toggleFavorite,
-    isFavorite
-  }), [favorites, toggleFavorite, isFavorite]) // Only change when these change
+    isFavorite,
+    reorderFavorites
+  }), [favorites, toggleFavorite, isFavorite, reorderFavorites]) // Only change when these change
 
   return value
 }

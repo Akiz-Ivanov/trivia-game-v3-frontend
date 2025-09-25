@@ -83,6 +83,7 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 - **React Fast Marquee** for scrolling text/UI effects
 - **Fuse.js** for search & fuzzy matching
 - **Sonner** for notifications
+- **@dnd-kit** for drag-and-drop interactions
 
 ### Backend
 - **Node.js** + **Express**

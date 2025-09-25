@@ -6,10 +6,39 @@ import { Star } from 'lucide-react'
 import StationItem from './StationItem'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useEffect, useState } from 'react'
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
+
+import type { DragEndEvent } from '@dnd-kit/core'
+import DraggableStationItem from './DraggableStationItem'
 
 const StationList = () => {
 
   const [virtuosoKey, setVirtuosoKey] = useState(0)
+
+  //* Drag and drop sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8, // Require 8px of movement before drag starts (prevents accidental drags during click/tap)
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  )
 
   useEffect(() => {
     const handleAnimationComplete = () => {
@@ -33,7 +62,24 @@ const StationList = () => {
     toggleFavorite,
     isFavorite,
     setActiveList,
+    reorderFavorites
   } = useRadioContext()
+
+  // Handle drag end for favorites
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event
+
+    if (over && active.id !== over.id) {
+      const oldIndex = favorites.findIndex(station => station.stationuuid === active.id)
+      const newIndex = favorites.findIndex(station => station.stationuuid === over.id)
+
+      if (oldIndex !== -1 && newIndex !== -1) {
+        const reorderedFavorites = arrayMove(favorites, oldIndex, newIndex)
+        reorderFavorites(reorderedFavorites)
+        setActiveList(reorderedFavorites, 'favorites')
+      }
+    }
+  }
 
   //* Update active list when tab changes
   const handleTabChange = (value: string) => {
@@ -131,22 +177,33 @@ const StationList = () => {
         </TabsContent>
         <TabsContent value="favorites">
           {favorites.length > 0 ? (
-            <Virtuoso
-              data={favorites}
-              style={{ height: "100%" }}
-              role="list"
-              aria-label={`Favorite radio stations, ${favorites.length} favorites`}
-              itemContent={(index, station) => (
-                <StationItem
-                  key={`station.stationuuid-${index}`}
-                  station={station}
-                  currentStation={currentStation}
-                  isFavorite={isFavorite}
-                  toggleFavorite={toggleFavorite}
-                  selectStation={selectStation}
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={favorites.map(station => station.stationuuid)}
+                strategy={verticalListSortingStrategy}
+              >
+                <Virtuoso
+                  data={favorites}
+                  style={{ height: "100%", margin: "0.25rem" }}
+                  role="list"
+                  aria-label={`Favorite radio stations, ${favorites.length} favorites (draggable)`}
+                  itemContent={(index, station) => (
+                    <DraggableStationItem
+                      key={`station.stationuuid-${index}`}
+                      station={station}
+                      currentStation={currentStation}
+                      isFavorite={isFavorite}
+                      toggleFavorite={toggleFavorite}
+                      selectStation={selectStation}
+                    />
+                  )}
                 />
-              )}
-            />
+              </SortableContext>
+            </DndContext>
           ) : (
             <div
               role="status"
