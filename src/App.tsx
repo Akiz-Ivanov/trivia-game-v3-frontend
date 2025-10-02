@@ -5,7 +5,6 @@ import triviadbApi from './services/triviadbApi'
 import GameForm from "./components/game-form/GameForm"
 import GameManager from './components/game/GameManager'
 import ErrorScreen from './components/common/ErrorScreen'
-import LoadingScreen from './components/common/LoadingScreen'
 import Menu from './components/Menu'
 import SettingsDialog from './components/common/SettingsDialog'
 import ReturnToMenu from './components/common/ReturnToMenu'
@@ -22,6 +21,7 @@ import { showToastInfo } from './components/common/ToastWrapper'
 import type { TriviaQuestion } from './types/trivia-db.types'
 import type { GameFormData } from "./types/game-form.types"
 import type { Screen } from './types/screen.types'
+import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi'
 
 function App(): React.JSX.Element {
 
@@ -131,10 +131,13 @@ function App(): React.JSX.Element {
         {screen !== "menu" && <SettingsDialog />}
         <ErrorBoundary FallbackComponent={ErrorScreen} onReset={resetGame}>
           {screen === "loading" && (
-            <LoadingScreen />
+            <div className='text-chart-4 flex flex-col gap-2 items-center justify-center'>
+              <GiPerspectiveDiceSixFacesRandom size={60} aria-hidden="true" className="animate-dice-spinning" />
+              <h2 className='tracking-wide'>Loading...</h2>
+            </div>
           )}
           {screen === "error" && (
-            <ErrorScreen resetErrorBoundary={resetGame} />
+            <ErrorScreen resetErrorBoundary={() => setScreen("form")} />
           )}
           {screen === "menu" && (
             <Menu
@@ -142,7 +145,6 @@ function App(): React.JSX.Element {
               toggleRadio={() => setIsRadioOn(prev => !prev)}
               isRadioOn={isRadioOn}
               handleQuickPlay={startGame}
-            // onChange={handleChange}
             // isFirstRender={isFirstRender}
             />
           )}

@@ -73,7 +73,7 @@ const ErrorScreen = ({ error, resetErrorBoundary }: ErrorScreenProps): React.JSX
                     ? "Something went wrong in the app."
                     : "Couldn't fetch questions from the database."}
             </h2>
-            <strong className="text-chart-4">
+            <strong className="text-chart-1">
                 {isAppCrash
                     ? error?.message || "An unexpected error occurred. Return to the home page."
                     : (

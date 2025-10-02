@@ -96,8 +96,8 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
             <IoRocket
               size={20}
               aria-hidden="true"
-              className={cn("text-[#00f0ff] will-change-[transform,opacity]",
-                "drop-shadow-[0_0_13px_#00f0ff] ",
+              className={cn("text-chart-4 will-change-[transform,opacity]",
+                "drop-shadow-[0_0_13px_var(--color-chart-4)] ",
                 settings.animations && shouldAnimateRocket && "group-data-[state=open]:animate-flyoff",
                 settings.animations && shouldAnimateRocket && "group-data-[state=closed]:animate-flyback"
               )}
@@ -116,7 +116,7 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
             focus:border-none outline-none hover:scale-105
             focus-visible:ring-2 focus-visible:ring-ring
           ">
-          <GiScrollQuill size={20} aria-hidden="true" className="text-[#00f0ff]" /> Customize
+          <GiScrollQuill size={20} aria-hidden="true" className="text-chart-4" /> Customize
         </RegularButton>
         <RegularButton
           onClick={handleQuickPlay}
@@ -125,7 +125,7 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
             focus:border-none outline-none hover:scale-105
             focus-visible:ring-2 focus-visible:ring-ring
           ">
-          <IoFlash size={20} aria-hidden="true" className="text-[#00f0ff]" /> Quick Play
+          <IoFlash size={20} aria-hidden="true" className="text-chart-4" /> Quick Play
         </RegularButton>
       </MenuItem>
 
@@ -135,7 +135,7 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
             <IoMusicalNotes
               size={20}
               aria-hidden="true"
-              className="text-[#00f0ff]"
+              className="text-chart-4"
             />
             <span>Radio Widget</span>
           </span>

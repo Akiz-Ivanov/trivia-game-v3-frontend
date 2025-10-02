@@ -1,7 +1,7 @@
 import { Virtuoso } from 'react-virtuoso'
 import { useRadioContext } from '@/hooks/useRadioContext'
 import { cn } from "@/lib/utils"
-import LoadingScreen from '../common/LoadingScreen'
+import LoadingSpinner from '../common/LoadingSpinner'
 import { Star } from 'lucide-react'
 import StationItem from './StationItem'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -150,7 +150,7 @@ const StationList = () => {
                 aria-live="polite"
                 className="h-full flex items-center justify-center"
               >
-                <LoadingScreen />
+                <LoadingSpinner />
                 <span className="sr-only">Loading radio stations...</span>
               </div>
             ) : (
