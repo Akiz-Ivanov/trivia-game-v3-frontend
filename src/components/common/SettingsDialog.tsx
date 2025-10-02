@@ -34,7 +34,7 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
                         aria-label="Open settings"
                         className="absolute top-2 right-2 sm:top-4 sm:right-4 z-50 rounded-full p-1 "
                     >
-                        <Settings className="size-6 text-[#9883f3] hover:animate-[spin_1s_ease-in-out] cursor-pointer" />
+                        <Settings className="size-6 text-chart-4 hover:animate-[spin_1s_ease-in-out] cursor-pointer" />
                     </button>
                 </DialogTrigger>)}
             <DialogContent
