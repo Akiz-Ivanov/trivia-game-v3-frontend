@@ -32,12 +32,12 @@ const RadioSearchInput = () => {
         onChange={(e) => setSearchValue(e.target.value)}
         className={cn(
           " justify-between p-2",
-          "text-[#f1dab7] bg-[#241e21]/85 hover:bg-[#2b2427] ring-1 ring-[#f1dab7]",
+          "text-radio-text bg-radio-bg-dark/85 hover:bg-radio-bg-dark ring-1 ring-radio-text",
           // Default: raised
           "shadow-[2px_2px_4px_rgba(0,0,0,0.6),-2px_-2px_4px_rgba(255,255,255,0.15)]",
           "border-t-[1px] border-l-[1px] border-t-[#00000066] border-l-[#00000066]",
           "border-b-[1px] border-r-[1px] border-b-[#ffffff33] border-r-[#ffffff33]",
-          "focus-visible:border-[#f1dab7] focus-visible:bg-[#2b2427] text-sm",
+          "focus-visible:border-radio-text focus-visible:bg-radio-bg-dark text-sm",
           "focus-visible:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.6),inset_-2px_-2px_4px_rgba(255,255,255,0.2)]",
           "border-t-[#ffffff33] border-l-[#ffffff33]",
           "border-b-[#00000066] border-r-[#00000066]"
@@ -49,7 +49,7 @@ const RadioSearchInput = () => {
         <button
           type="button"
           onClick={clearSearch}
-          className="absolute right-0 top-1/2 -translate-y-1/2 pr-4 text-[#f1dab7] hover:text-gray-200"
+          className="absolute right-0 top-1/2 -translate-y-1/2 pr-4 text-radio-text hover:text-gray-200"
           aria-label="Clear search"
         >
           <XIcon className="h-4 w-4" />

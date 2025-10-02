@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react'
-import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary } from 'react-error-boundary'
 import { preloadAllCategoryImages } from '@/assets/imports'
 import triviadbApi from './services/triviadbApi'
 import GameForm from "./components/game-form/GameForm"
 import GameManager from './components/game/GameManager'
 import ErrorScreen from './components/common/ErrorScreen'
 import LoadingScreen from './components/common/LoadingScreen'
-import Menu from './components/Menu';
+import Menu from './components/Menu'
 import SettingsDialog from './components/common/SettingsDialog'
-import ReturnToMenu from './components/common/ReturnToMenu';
+import ReturnToMenu from './components/common/ReturnToMenu'
 import { useSettings } from "@/hooks/useSettings"
-import { useSoundManager } from './hooks/useSoundManager';
-import useHoverDetection from './hooks/useHoverDetection';
+import { useSoundManager } from './hooks/useSoundManager'
+import useHoverDetection from './hooks/useHoverDetection'
 import { Toaster } from "@/components/ui/sonner"
-import RadioWidget from './components/radio/RadioWidget';
-import { RadioProvider } from './context/RadioProvider';
-import { toast } from 'sonner';
-import useLocalStorageState from './hooks/useLocalStorageState';
+import RadioWidget from './components/radio/RadioWidget'
+import { RadioProvider } from './context/RadioProvider'
+import useLocalStorageState from './hooks/useLocalStorageState'
+import { showToastInfo } from './components/common/ToastWrapper'
 
 //* ====== Types ======
 import type { TriviaQuestion } from './types/trivia-db.types'
@@ -33,7 +33,10 @@ function App(): React.JSX.Element {
   }
 
   //* ====== Form State ======
-  const [formData, setFormData] = useState<GameFormData>(initialFormData)   // Stores quiz config: amount, category, difficulty
+  const [formData, setFormData] = useLocalStorageState<GameFormData>(
+    "triviaFormData",
+    initialFormData
+  )   // Stores quiz config: amount, category, difficulty
 
   //* ====== Trivia Game State ======
   const [triviaData, setTriviaData] = useState<TriviaQuestion[]>([])  // Fetched trivia questions
@@ -138,7 +141,7 @@ function App(): React.JSX.Element {
               onFormStart={handleFormStart}
               toggleRadio={() => setIsRadioOn(prev => !prev)}
               isRadioOn={isRadioOn}
-            // startGame={startGame}
+              handleQuickPlay={startGame}
             // onChange={handleChange}
             // isFirstRender={isFirstRender}
             />
@@ -164,7 +167,7 @@ function App(): React.JSX.Element {
             <RadioProvider>
               <RadioWidget powerOff={() => {
                 setIsRadioOn(false)
-                toast.info("Radio turned off! You can turn it back on in the menu.")
+                showToastInfo("Radio turned off! You can turn it back on in the menu.")
               }} />
             </RadioProvider>
           )}

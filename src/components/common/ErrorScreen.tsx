@@ -6,6 +6,7 @@ import RegularButton from "./RegularButton"
 import Card from "./Card"
 import errorImg from '@/assets/svgs/error.svg'
 import { useSettings } from "@/hooks/useSettings"
+import { HiOutlineLightBulb } from "react-icons/hi";
 
 type ErrorScreenProps = {
     error?: Error | null
@@ -47,23 +48,23 @@ const ErrorScreen = ({ error, resetErrorBoundary }: ErrorScreenProps): React.JSX
             {/* ====== Error Image or Skeleton ====== */}
             {settings.illustrations && (
                 <div className="min-w-[min(18.75rem,80vw)] min-h-[min(18.75rem,80vw] relative">
-                {!imageLoaded && (
-                    <Skeleton className="h-full w-full absolute " />
-                )}
-                <img
-                    src={errorImg}
-                    alt="Error"
-                    onLoad={() => setImageLoaded(true)}
-                    className={cn(
-                        'error-img w-full h-full object-contain will-change-transform transform transition-all duration-800 ease-out',
-                        {
-                            'opacity-100 translate-y-0': imageLoaded && settings.animations,
-                            'opacity-0 translate-y-5': !imageLoaded && settings.animations,
-                            'opacity-100 translate-y-0 transition-none': !settings.animations,
-                        }
+                    {!imageLoaded && (
+                        <Skeleton className="h-full w-full absolute " />
                     )}
-                />
-            </div>
+                    <img
+                        src={errorImg}
+                        alt="Error"
+                        onLoad={() => setImageLoaded(true)}
+                        className={cn(
+                            'error-img w-full h-full object-contain will-change-transform transform transition-all duration-800 ease-out',
+                            {
+                                'opacity-100 translate-y-0': imageLoaded && settings.animations,
+                                'opacity-0 translate-y-5': !imageLoaded && settings.animations,
+                                'opacity-100 translate-y-0 transition-none': !settings.animations,
+                            }
+                        )}
+                    />
+                </div>
             )}
 
             {/* ====== Info Message ====== */}
@@ -75,7 +76,24 @@ const ErrorScreen = ({ error, resetErrorBoundary }: ErrorScreenProps): React.JSX
             <strong className="text-chart-4">
                 {isAppCrash
                     ? error?.message || "An unexpected error occurred. Return to the home page."
-                    : " Most likely not enough questions found for the selected parameters. Try reducing the number of questions or changing the difficulty."}
+                    : (
+                        <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-l-4 border-cyan-400 rounded-r-lg p-4 mb-6">
+                            <div className="flex gap-3">
+                                <HiOutlineLightBulb
+                                    className="w-6 h-6 text-cyan-400 flex-shrink-0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                />
+                                <div>
+
+                                    <p className="text-cyan-400">
+                                        Most likely not enough questions found for the selected parameters. Try reducing the number of questions, changing the difficulty, or selecting a different category.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
             </strong>
 
             {!isAppCrash && (

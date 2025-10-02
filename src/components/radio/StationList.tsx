@@ -91,20 +91,20 @@ const StationList = () => {
   }
 
   return (
-    <div className="w-full h-58 bg-[#3b2e26] backdrop-blur-sm
-      border-2 border-amber-400 rounded-xl  overflow-hidden 
+    <div className="w-full h-58 bg-radio-panel backdrop-blur-sm
+      border-2 border-radio-glow rounded-xl overflow-hidden 
       shadow-[inset_0_2px_6px_rgba(255,255,255,0.3),inset_0_-2px_2px_rgba(0,0,0,0.5),0_4px_8px_rgba(0,0,0,0.5)]"
     >
 
       <Tabs defaultValue="search" className='w-full h-full' onValueChange={handleTabChange}>
-        <TabsList className='w-full h-7 rounded-none p-0 bg-amber-900/80 border-b border-amber-600'>
+        <TabsList className='w-full h-7 rounded-none p-0 bg-radio-screen-tab-bg border-b border-radio-texture-color'>
           <TabsTrigger
             value="search"
             className={cn(
               "w-full h-full rounded-none text-xs font-medium transition-all relative",
-              "data-[state=active]:bg-amber-800 data-[state=active]:text-amber-200",
-              "data-[state=inactive]:bg-transparent data-[state=inactive]:text-amber-400 data-[state=inactive]:hover:text-amber-200",
-              "border-r border-amber-600 last:border-r-0"
+              "data-[state=active]:bg-radio-screen-tab-active data-[state=active]:text-radio-light-sides",
+              "data-[state=inactive]:bg-transparent data-[state=inactive]:text-radio-light-middle data-[state=inactive]:hover:text-radio-light-sides",
+              "border-r border-radio-texture-color last:border-r-0"
             )}
           >
             Search
@@ -113,9 +113,9 @@ const StationList = () => {
             value="favorites"
             className={cn(
               "w-full h-full rounded-none text-xs font-medium transition-all",
-              "data-[state=active]:bg-amber-800 data-[state=active]:text-amber-200",
-              "data-[state=inactive]:bg-transparent data-[state=inactive]:text-amber-400 data-[state=inactive]:hover:text-amber-200",
-              "border-r border-amber-600 last:border-r-0"
+              "data-[state=active]:bg-radio-screen-tab-active data-[state=active]:text-radio-light-sides",
+              "data-[state=inactive]:bg-transparent data-[state=inactive]:text-radio-light-middle data-[state=inactive]:hover:text-radio-light-sides",
+              "border-r border-radio-texture-color last:border-r-0"
             )}
           >
             Favorites
@@ -158,14 +158,14 @@ const StationList = () => {
                 <div
                   role="alert"
                   aria-live="assertive"
-                  className="h-full flex items-center justify-center text-red-400 p-4 text-center text-base"
+                  className="h-full flex items-center justify-center text-error-foreground p-4 text-center text-base"
                 >
                   {fetchError}
                 </div>
               ) : (
                 <div
                   role="status"
-                  className="h-full flex items-center justify-center text-amber-400 p-4 text-center"
+                  className="h-full flex items-center justify-center text-radio-light-middle p-4 text-center"
                 >
                   No stations found. Try different search.
                 </div>
@@ -207,7 +207,7 @@ const StationList = () => {
           ) : (
             <div
               role="status"
-              className="h-full p-4 flex flex-col items-center justify-center text-amber-400 gap-2 text-sm text-center"
+              className="h-full p-4 flex flex-col items-center justify-center text-radio-light-middle gap-2 text-sm text-center"
             >
               <Star aria-hidden="true" size={18} />
               No favorites yet. Click the star icon next to any station to add it to favorites.

@@ -4,6 +4,7 @@ export type Settings = {
     backgroundPattern: boolean
     backgroundGlow: boolean
     sound: boolean
+    radioTheme: RadioTheme
 }
 
 export type SettingsContextType = {
@@ -13,4 +14,7 @@ export type SettingsContextType = {
     toggleBackgroundPattern: () => void
     toggleBackgroundGlow: () => void
     toggleSound: () => void
+    setRadioTheme: (theme: RadioTheme) => void
 }
+
+export type RadioTheme = 'retro' | 'futuristic'

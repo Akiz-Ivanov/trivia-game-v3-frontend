@@ -9,21 +9,25 @@ const InfoPanelAI = ({ content, open }: { content: string, open: boolean }) => {
         if (!ref.current || !open) return;
 
         const timeout = setTimeout(() => {
-            ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            ref.current?.focus();
+            ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            ref.current?.focus()
         }, 250)
 
         return () => clearTimeout(timeout)
     }, [open])
 
     // Don't render at all when not open
-    if (!open) return null;
+    // if (!open) return null
+
+    // The reason why it wasn't working is because of if (!open) return null and collapsible and // value="ai-panel" // Always open when rendered
+    // Mainly because of trying to make accordion not focusable when closed
 
     return (
         <Accordion
             type="single"
-            collapsible
-            value="ai-panel" // Always open when rendered
+            aria-hidden={!open}
+            collapsible value={open ? "ai-panel" : ""}
+            // value="ai-panel" // Always open when rendered
             className="w-full purple-bg rounded-aicard mt-2"
         >
             <AccordionItem value="ai-panel">

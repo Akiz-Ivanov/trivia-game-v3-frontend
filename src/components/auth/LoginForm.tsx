@@ -2,9 +2,9 @@ import { useState } from "react"
 import RegularButton from "../common/RegularButton"
 import loginService from "@/services/loginService"
 import useAuth from "@/hooks/useAuth"
-import { toast } from "sonner"
 import { TriangleAlert, Eye, EyeOff, KeyRound, User2, LogIn } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { showToastSuccess } from "../common/ToastWrapper"
 
 import type { User } from "@/types/auth.types"
 import type { AuthMode } from "@/components/auth/AuthDialog"
@@ -47,16 +47,7 @@ const LoginForm = ({
       setLogin("")
       setPassword("")
       onClose()
-      toast.success(
-        <div className="flex items-center gap-2">
-          <span className="font-bold">Welcome back, {user.username || user.email}!</span>
-        </div>, {
-        style: {
-          fontWeight: 700,
-          fontSize: "1rem",
-          border: "2px solid var(--chart-3)"
-        },
-      })
+      showToastSuccess(`Welcome back, ${user.username || user.email}!`)
       setError(null)
     } catch (err) {
       if (err instanceof Error) setError(err.message)

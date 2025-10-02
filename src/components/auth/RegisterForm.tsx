@@ -1,7 +1,6 @@
 import { useState } from "react"
 import RegularButton from "../common/RegularButton"
 import registerService from "@/services/registerService"
-import { toast } from "sonner"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -12,10 +11,10 @@ import * as secureRandomPassword from "secure-random-password"
 import RegisterPasswordField from "./RegisterPasswordField"
 import useAvailabilityCheck from "@/hooks/useAvailabilityCheck"
 import TooltipWrapper from "../common/TooltipWrapper"
+import { showToastSuccess } from "../common/ToastWrapper"
 import {
   Form,
   FormControl,
-  // FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -83,13 +82,7 @@ const RegisterForm = ({ onSwitch }: RegisterFormProps) => {
     setBackendError(null)
     try {
       await registerService.register(values)
-      toast.success("Registered successfully!", {
-        style: {
-          fontWeight: 700,
-          fontSize: "1rem",
-          border: "2px solid var(--chart-3)",
-        },
-      })
+      showToastSuccess("Registered successfully!")
     } catch (err) {
       if (err instanceof Error) setBackendError(err.message)
     }

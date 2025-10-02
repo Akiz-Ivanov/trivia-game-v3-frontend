@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils"
-import woodPattern from "@/assets/svgs/Wood.jpg"
 import { AnimatePresence, motion } from "framer-motion"
 import { useRadioContext } from "@/hooks/useRadioContext"
 import StationList from "./StationList"
@@ -20,23 +19,21 @@ const RadioDrawer = ({ openDrawer, openScreen }: RadioDrawerProps) => {
     <div
       className={
         cn(
-          "drawer-wrapper -z-1 absolute top-0 left-0 w-full h-18 bg-[#bd6a4f] will-change-transform",
+          "drawer-wrapper -z-1 absolute top-0 left-0 w-full h-18 bg-radio-texture-color will-change-transform",
           "transition-transform duration-500 ease-out rounded-lg sm:bottom-3 sm:left-0 sm:top-auto",
           {
             "translate-y-0 translate-x-0 sm:translate-y-0": !openDrawer,
             "-translate-y-15 sm:translate-y-0 sm:-translate-x-full": openDrawer,
-            // "hidden": mode === "popular",
           }
         )}
     >
       <div
         className="drawer w-full h-full pl-2 pr-4 py-2 bg-cover rounded-sm
         flex flex-col justify-start sm:justify-center items-center gap-2 bg-repeat
-        bg-[repeating-linear-gradient(135deg,#bd6a4f_0px,#724039_2px)]"
+        bg-[repeating-linear-gradient(135deg,var(--radio-texture-color)_0px,var(--radio-texture-color-dark)_2px)]"
         style={{
-          backgroundImage: `url(${birdsSvg}), url(${woodPattern})`,
+          backgroundImage: `url(${birdsSvg}), var(--radio-texture)`,
           backgroundSize: "cover, 200px, 100px",
-          
         }}
         aria-hidden={!openDrawer}
         inert={!openDrawer}
@@ -71,7 +68,7 @@ const RadioDrawer = ({ openDrawer, openScreen }: RadioDrawerProps) => {
               )}
               style={{
                 perspective: "1000px",
-                backgroundImage: `url(${woodPattern})`,
+                backgroundImage: "var(--radio-texture)",
                 transformStyle: "preserve-3d",
               }}
               initial={{ rotateX: 90, opacity: 1, y: 50, transformOrigin: "bottom center" }}

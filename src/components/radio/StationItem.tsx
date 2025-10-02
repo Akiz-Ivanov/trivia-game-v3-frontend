@@ -33,12 +33,12 @@ const StationItem = ({ station, currentStation, isFavorite, toggleFavorite, sele
         }}
         aria-current={isCurrent ? "true" : undefined}
         aria-label={`Select station ${name}${isCurrent ? ' (currently playing)' : ''}`}
-        className={cn("text-[#f2cc5b] bg-transparent p-1 mb-2 text-left",
+        className={cn("text-radio-accent bg-transparent p-1 mb-2 text-left",
           "w-full justify-between mb-1 h-auto flex",
           "text-sm font-medium shadow-sm cursor-pointer w-full",
-          "hover:outline-1 hover:outline-[#e6b14d] truncate relative pr-2 hover:bg-transparent",
+          "hover:outline-1 hover:outline-radio-accent truncate relative pr-2 hover:bg-transparent",
           {
-            "text-[#f2cc5b]/30": isCurrent
+            "text-radio-accent/30": isCurrent
           }
         )}
       >
@@ -69,8 +69,8 @@ const StationItem = ({ station, currentStation, isFavorite, toggleFavorite, sele
             className={cn(
               "size-4",
               isStationFavorite
-                ? "fill-[#e6b14d] text-[#e6b14d]"
-                : "text-amber-500/60"
+                ? "fill-radio-accent text-radio-accent"
+                : "text-radio-glow"
             )}
             aria-hidden="true"
           />

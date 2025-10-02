@@ -1,4 +1,4 @@
-import type { Settings } from "@/types/settings.types"
+import type { RadioTheme, Settings } from "@/types/settings.types"
 import { SettingsContext } from "./SettingsContext"
 import useLocalStorageState from "@/hooks/useLocalStorageState"
 
@@ -10,6 +10,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
         backgroundPattern: true,
         backgroundGlow: true,
         sound: true,
+        radioTheme: 'retro'
     })
 
     const toggleAnimations = () => {
@@ -47,6 +48,13 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
         }))
     }
 
+    const setRadioTheme = (theme: RadioTheme) => {
+        setSettings(prevSettings => ({
+            ...prevSettings,
+            radioTheme: theme
+        }))
+    }
+
     return (
         <SettingsContext.Provider value={{
             settings,
@@ -54,7 +62,8 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
             toggleIllustrations,
             toggleBackgroundPattern,
             toggleBackgroundGlow,
-            toggleSound
+            toggleSound,
+            setRadioTheme
         }}>
             {children}
         </SettingsContext.Provider>

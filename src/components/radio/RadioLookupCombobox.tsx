@@ -8,7 +8,7 @@ import {
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
+  PopoverTrigger
 } from "@/components/ui/popover"
 import { Virtuoso } from 'react-virtuoso'
 import { useRadioContext } from "@/hooks/useRadioContext"
@@ -21,7 +21,7 @@ const RadioLookupCombobox = () => {
   const [value, setValue] = useState<string>("")
 
   const { mode, setStationQuery } = useRadioContext()
-
+  
   const handleSelect = (name: string) => {
     setValue(name)
     setOpen(false)
@@ -44,7 +44,7 @@ const RadioLookupCombobox = () => {
           role="combobox"
           aria-expanded={open}
           className={cn(
-            "w-[12.5rem] justify-between p-2 text-[#f1dab7] bg-[#241e21]/85 hover:bg-[#2b2427] ring-1 ring-[#f1dab7]",
+            "w-[12.5rem] justify-between p-2 text-radio-text bg-[#241e21]/85 hover:bg-[#2b2427] ring-1 ring-radio-text",
             // Default: raised
             "shadow-[2px_2px_4px_rgba(0,0,0,0.6),-2px_-2px_4px_rgba(255,255,255,0.15)]",
             "border-t-[1px] border-l-[1px] border-t-[#00000066] border-l-[#00000066]",
@@ -62,7 +62,7 @@ const RadioLookupCombobox = () => {
           <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0 border-[#f1dab7] shadow-[2px_2px_6px_rgba(0,0,0,0.6),-2px_-2px_6px_rgba(255,255,255,0.05)]">
+      <PopoverContent className="w-[200px] p-0 border-radio-text shadow-[2px_2px_6px_rgba(0,0,0,0.6),-2px_-2px_6px_rgba(255,255,255,0.05)]">
         <Command className="flex flex-col h-60 bg-[#241e21] 
           shadow-[2px_2px_6px_rgba(0,0,0,0.6),-2px_-2px_6px_rgba(255,255,255,0.05)]">
           <CommandInput
@@ -72,7 +72,7 @@ const RadioLookupCombobox = () => {
               console.log("Input changed:", value)
               setSearchQuery(value);
             }}
-            className="flex-shrink-0 placeholder:text-[#f1dab7] text-[#f1dab7]"
+            className="flex-shrink-0 placeholder:text-radio-text text-radio-text"
           />
 
           {loading && (
@@ -112,7 +112,7 @@ const RadioLookupCombobox = () => {
                       value === item.name ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  <span className="text-[#f1dab7]">
+                  <span className="text-radio-text">
                     {item.name} ({item.stationcount})
                   </span>
                 </button>

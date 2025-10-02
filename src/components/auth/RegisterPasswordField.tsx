@@ -2,8 +2,8 @@ import { useState } from "react"
 import { FormControl } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Eye, EyeOff, KeyRound } from "lucide-react"
-import { toast } from "sonner"
 import TooltipWrapper from "../common/TooltipWrapper"
+import { showToastSuccess } from "../common/ToastWrapper"
 
 import type { ControllerRenderProps} from "react-hook-form"
 import type { FormSchema } from "./RegisterForm"
@@ -25,15 +25,9 @@ const RegisterPasswordField = ({ field, placeholder, generatePassword }: Registe
 
     try {
       await navigator.clipboard.writeText(password)
-      toast.success("Random password generated & copied to clipboard!", {
-        style: { fontWeight: 700, fontSize: "1rem", border: "2px solid var(--chart-3)" },
-        position: "bottom-right"
-      })
+      showToastSuccess("Random password generated & copied to clipboard!")
     } catch {
-      toast.success("Random password generated successfully!", {
-        style: { fontWeight: 700, fontSize: "1rem", border: "2px solid var(--chart-3)" },
-        position: "bottom-right"
-      })
+      showToastSuccess("Random password generated successfully!")
     }
   } 
 

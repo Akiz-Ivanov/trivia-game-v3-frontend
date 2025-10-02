@@ -123,9 +123,9 @@ const Results = ({ score, numOfQuestions, resetGame }: ResultsProps): React.JSX.
                     type="button"
                     onClick={resetGame}
                     className="inline-flex items-center justify-center gap-1 rounded-[1.5rem] mt-3 px-8 py-3 
-                text-white shadow-[0_4px_20px_rgba(166,119,227,0.4)] transition-all duration-300 ease
-                bg-gradient-to-br from-[#6e8efb] to-[#a777e3] text-[1.2rem] will-change-transform
-                hover:from-[#7aa2ff] hover:to-[#c187f2] hover:shadow-[0_6px_25px_rgba(166,119,227,0.6)] hover:-translate-y-1 font-bold
+                    text-white shadow-[0_4px_20px_rgba(166,119,227,0.4)] transition-all duration-300 ease
+                    bg-gradient-to-br from-[#6e8efb] to-[#a777e3] text-[1.2rem] will-change-transform
+                    hover:from-[#7aa2ff] hover:to-[#c187f2] hover:shadow-[0_6px_25px_rgba(166,119,227,0.6)] hover:-translate-y-1 font-bold
                     focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00c3ffcc] focus-visible:shadow-[0_0_0_4px_rgba(0,195,255,0.3)]
                     active:scale-95 active:shadow-[0_3px_10px_rgba(166,119,227,0.3)]
                     focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"

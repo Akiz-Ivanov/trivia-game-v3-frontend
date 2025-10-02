@@ -10,7 +10,7 @@ const StationFilter = () => {
 
   return (
     <div className="tuning-dial-wrapper transition-transform duration-500">
-    <div className="tuning-dial flex justify-center items-center px-3 bg-black rounded-full divide-x divide-[#555] text-[#ffca3a] shadow-[inset_0_2px_6px_rgba(255,255,255,0.3),0_-2px_6px_rgba(0,0,0,0.5)] h-6 relative overflow-hidden">
+    <div className="tuning-dial flex justify-center items-center px-3 bg-black rounded-full divide-x divide-[#555] text-radio-light-sides shadow-[inset_0_2px_6px_rgba(255,255,255,0.3),0_-2px_6px_rgba(0,0,0,0.5)] h-6 relative overflow-hidden">
       {modes.map((m) => (
         <button
           key={m}

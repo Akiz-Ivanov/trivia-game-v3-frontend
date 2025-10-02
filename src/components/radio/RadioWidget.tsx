@@ -4,18 +4,23 @@ import { Loader2 } from "lucide-react"
 import RadioDrawer from "./RadioDrawer"
 import StationFilter from "./StationFilter"
 import VolumeSlider from "./VolumeSlider"
-import woodPattern from "@/assets/svgs/Wood.jpg"
 import Marquee from "react-fast-marquee"
 import { useRadioContext } from "@/hooks/useRadioContext"
 import UtilityButton from "./UtilityButton"
 import { cn } from "@/lib/utils"
 import RadioCatSvg from "@/assets/svgs/radio-cat.svg?react"
+import { useSettings } from "@/hooks/useSettings"
 
 const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
-
+  
+  // const [theme, setTheme] = useState<'vintage' | 'modern'>('modern')
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const [openScreen, setOpenScreen] = useState<boolean>(false)
+
+  const { settings } = useSettings()
+
+  const theme = settings.radioTheme
 
   const widgetRef = useRef<HTMLDivElement>(null)
 
@@ -79,6 +84,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
   return (
     <div
       ref={widgetRef}
+      data-radio-theme={theme}
       className={cn(
         "fixed z-50",
         {
@@ -90,7 +96,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
       {isOpen ? (
         <div
           className="radio-wood-frame"
-          style={{ backgroundImage: `url(${woodPattern})`, }}
+          style={{ backgroundImage: theme === "retro" ? 'var(--radio-texture)' : 'var(--radio-texture)' }}
         >
           <div className="radio-inner-trim">
             <div className="rounded-xl w-72 flex flex-col gap-4 shadow-inset p-1 relative bg-cover bg-center radio-bg">
@@ -100,7 +106,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
               {/* Top-half */}
               <div className="h-1/2 radio-top-half py-3.5 px-4 flex flex-col gap-3.5">
 
-                <div className="flex flex-row justify-between px-1 gap-2 text-[#e8a948]">
+                <div className="flex flex-row justify-between px-1 gap-2">
 
                   <UtilityButton
                     onClick={() => setOpenDrawer(!openDrawer)}
@@ -178,7 +184,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
                   <button
                     className="rounded-full
                     text-sm inline-flex items-center justify-center gap-1 pl-1
-                    text-[#e8a948] hover:text-error-foreground transition-colors duration-200"
+                    text-radio-glow hover:text-error-foreground transition-colors duration-200"
                     onClick={powerOff}
                   >
                     OFF <CirclePower className="size-4" />
@@ -190,7 +196,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
                   <button
                     className="rounded-full bottom-1 right-3 
                   text-sm inline-flex items-center pr-1 justify-center gap-1 
-                  text-[#e8a948] hover:text-chart-3 transition-colors duration-200"
+                  text-radio-glow hover:text-chart-3 transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
                     <Minimize className="size-4" /> Dock

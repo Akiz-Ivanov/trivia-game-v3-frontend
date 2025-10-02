@@ -76,6 +76,7 @@
   --radius-progressbar: var(--radius-progressbar);
   --radius-aicard: var(--radius-aicard);
 
+  /* Shadows */
   --shadow-card: var(--shadow-card);
   --shadow-card-error: var(--shadow-card-error);
   --shadow-hard: var(--shadow-hard);
@@ -85,8 +86,12 @@
     inset 0 4px 10px rgba(0, 0, 0, 0.9),
     inset 0 -4px 8px rgba(0, 0, 0, 0.8);
 
+  /* Animations */
   --animate-flicker: flicker 2s infinite;
+  --animate-flyoff: flyoff 1000ms linear forwards;
+  --animate-flyback: flyback 3s ease-out forwards;
 
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -115,6 +120,32 @@
   --color-chart-5: var(--chart-5);
   --color-correct: var(--correct-btn);
   --color-incorrect: var(--incorrect-btn);
+
+  /* Radio theme colors */
+  --color-radio-glow: var(--radio-glow);
+  --color-radio-accent: var(--radio-accent);
+  --color-radio-text: var(--radio-text);
+  --color-radio-bg-dark: var(--radio-bg-dark);
+  --color-radio-bg-medium: var(--radio-bg-medium);
+  --color-radio-panel: var(--radio-panel);
+  --color-radio-texture-color: var(--radio-texture-color);
+  --color-radio-texture-color-dark: var(--radio-texture-color-dark);
+  --color-radio-light-middle: var(--radio-light-middle);
+  --color-radio-light-sides: var(--radio-light-sides);
+  --color-radio-screen-tab-bg: var(--radio-screen-tab-bg);
+  --color-radio-screen-tab-active: var(--radio-screen-tab-active);
+
+  /* Radio shadows (can't be used in bg, but useful for box-shadow utilities) */
+  --shadow-radio-glow: 0 0 10px var(--radio-shadow-glow), 0 0 20px var(--radio-shadow-glow-subtle);
+  --animate-background-position-spin: background-position-spin 3000ms infinite alternate;
+  @keyframes background-position-spin {
+  0% {
+    background-position: top center;
+    }
+  100% {
+    background-position: bottom center;
+    }
+  }
 }
 
 /*==============================
@@ -224,6 +255,61 @@
   --shadow-hard: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--color-error-foreground) inset;
   --shadow-medium: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-1) inset;
   --shadow-easy: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-3) inset;
+}
+
+/*==============================
+  RADIO WIDGET THEMES
+===============================*/
+[data-radio-theme="retro"] {
+  --radio-glow: #e8a948;
+  --radio-accent: #f2cc5b;
+  --radio-text: #f1dab7;
+  --radio-bg-dark: #241e21;
+  --radio-bg-medium: #2b2427;
+  --radio-panel: #3b2e26;
+  --radio-texture-color: #bd6a4f;
+  --radio-texture-color-dark: #724039;
+  --radio-light-sides: #ffe680;
+  --radio-light-middle: #ffca3a;
+  --radio-btn-glow: rgb(255, 140, 0);
+  --radio-btn-glow-hover: rgba(255, 160, 0, 0.7);
+  --radio-shadow-glow: rgba(255, 200, 50, 0.8);
+  --radio-shadow-glow-subtle: rgba(255, 200, 50, 0.5);
+  --radio-texture: url('/src/assets/svgs/Wood.jpg');
+  --radio-station-bg: radial-gradient(circle at 50% 50%, var(--radio-light-sides) 0%, var(--radio-light-middle) 50%, var(--radio-glow) 100%);
+  --radio-screen-tab-bg: #74330a;
+  --radio-screen-tab-active: #973c00;
+}
+
+[data-radio-theme="futuristic"] {
+  --radio-glow: #00bfe0;
+  --radio-accent: #38bdf8;
+  --radio-text: #e0f2fe;
+  --radio-bg-dark: #0f172a;
+  --radio-bg-medium: #1e293b;
+  --radio-panel: #0f172a;
+  --radio-texture-color: #64748b;
+  --radio-texture-color-dark: #334155;
+  --radio-texture: url('/src/assets/svgs/Metal.jpg');
+  --radio-light-sides: #00faff;
+  --radio-light-middle: #008cff;
+  --radio-btn-glow: #38bdf8;
+  --radio-btn-glow-hover: rgba(56, 189, 248, 0.7);
+  --radio-tab-bg: #1e3a8a;
+  --radio-tab-active: #2563eb;
+  --radio-shadow-glow: rgba(56, 189, 248, 0.8);
+  --radio-shadow-glow-subtle: rgba(56, 189, 248, 0.4);
+  --radio-station-bg: linear-gradient(135deg,
+      #38bdf8 0%,
+      var(--radio-glow) 100%);
+  /*
+
+  try this for radio-station-bg:
+
+  radial-gradient(circle at 50% 50%,
+      var(--radio-light-sides) 0%,
+      var(--radio-light-middle) 40%,
+      var(--radio-glow) 100%); */
 }
 
 /*==============================
@@ -425,6 +511,20 @@
     opacity: 0.2;
   }
 
+  .menu-collapsible {
+    @apply w-full max-w-2xs lg:max-w-xs text-16-18 mb-1;
+    box-shadow:
+      0 0 0 0.1rem #ffffff44 inset,
+      0 0 0.6rem rgba(255, 255, 255, 0.1);
+    border-radius: .5rem;
+    background-color: oklch(65% 0.22 270);
+
+    @supports (corner-shape: squircle) {
+      border-radius: 1.5rem;
+      corner-shape: squircle;
+    }
+  }
+
   .menu>button {
     @apply w-full max-w-2xs lg:max-w-xs p-4 text-16-18 mb-1;
     box-shadow:
@@ -432,6 +532,7 @@
       0 0 0.6rem rgba(255, 255, 255, 0.1);
     border-radius: .5rem;
     background-color: oklch(65% 0.22 270);
+    background-image: url('/src/assets/backgrounds/scribble.svg');
 
     @supports (corner-shape: squircle) {
       border-radius: 1.5rem;
@@ -494,18 +595,17 @@
 
     box-shadow:
       inset 0 2px 6px rgba(255, 255, 255, 0.3),
-      /* top glow */
       inset 0 -2px 4px rgba(0, 0, 0, 0.5),
-      /* bottom shadow */
       0 2px 4px rgba(0, 0, 0, 0.6),
-      0 0 5px rgb(255, 140, 0),
-      0 0 8px rgba(255, 143, 7, 0.4),
-      0 0 10px rgba(255, 142, 3, 0.912);
+      0 0 5px var(--radio-btn-glow),
+      0 0 8px color-mix(in srgb, var(--radio-btn-glow) 40%, transparent),
+      0 0 10px color-mix(in srgb, var(--radio-btn-glow) 91%, transparent);
 
     &:hover {
-      box-shadow: 0 0 10px rgba(255, 160, 0, 0.7),
-        0 0 25px rgba(255, 160, 0, 0.5),
-        0 0 40px rgba(255, 160, 0, 0.3);
+      box-shadow:
+        0 0 10px var(--radio-btn-glow-hover),
+        0 0 25px color-mix(in srgb, var(--radio-btn-glow-hover) 50%, transparent),
+        0 0 40px color-mix(in srgb, var(--radio-btn-glow-hover) 30%, transparent);
     }
 
   }
@@ -531,13 +631,11 @@
     padding: 6px;
     border-radius: 1.5rem;
     /* background-color: #724039; */
-    background-color: #bd6a4f;
+    background-color: var(--radio-texture-color);
     background: repeating-linear-gradient(135deg,
-        #bd6a4f 0px,
-        #724039 2px);
-
+        var(--radio-texture-color) 0px,
+        var(--color-radio-texture-color-dark) 2px);
     position: relative;
-
     box-shadow:
       inset 0 1px 2px rgba(255, 255, 255, 0.3),
       /* subtle top edge highlight */
@@ -559,24 +657,29 @@
     height: 2.25rem;
     margin: 0 0.2rem;
     border-radius: 1rem;
-    background: radial-gradient(circle at 50% 50%,
-        #ffe680 0%,
-        #ffca3a 50%,
-        #e8a948 100%);
+    background: var(--radio-station-bg);
     box-shadow:
-      0 0 10px rgba(255, 200, 50, 0.8),
-      0 0 20px rgba(255, 200, 50, 0.5);
+      0 0 10px var(--radio-shadow-glow),
+      0 0 20px var(--radio-shadow-glow-subtle);
     animation: radio-light-flicker 3s infinite ease-in-out,
       radio-light-pulse 1.5s infinite alternate;
   }
 
   @keyframes radio-light-pulse {
-    0% {
+
+    /* 0% {
       box-shadow: 0 0 8px #ffc832, 0 0 15px #ffc83266;
     }
 
     100% {
       box-shadow: 0 0 16px #ffc832, 0 0 30px #ffc83299;
+    } */
+    0% {
+      box-shadow: 0 0 8px var(--radio-shadow-glow), 0 0 15px var(--radio-shadow-glow-subtle);
+    }
+
+    100% {
+      box-shadow: 0 0 16px var(--radio-shadow-glow), 0 0 30px var(--radio-shadow-glow-subtle);
     }
   }
 
@@ -592,12 +695,12 @@
 
   .radio-station-name::before {
     left: 0;
-    background: linear-gradient(to right, #e8a948, transparent);
+    background: linear-gradient(to right, var(--radio-glow), transparent);
   }
 
   .radio-station-name::after {
     right: 0;
-    background: linear-gradient(to left, #e8a948, transparent);
+    background: linear-gradient(to left, var(--radio-glow), transparent);
   }
 
   @keyframes radio-light-flicker {
@@ -648,12 +751,12 @@
 
   .border-light {
     background: radial-gradient(circle at 50% 50%,
-        #ffe680 0%,
-        #ffca3a 50%,
-        #e8a948 100%);
+        var(--radio-light-sides) 0%,
+        var(--radio-light-middle) 50%,
+        var(--radio-glow) 100%);
     box-shadow:
-      0 0 10px rgba(255, 200, 50, 0.8),
-      0 0 20px rgba(255, 200, 50, 0.5);
+      0 0 10px var(--radio-shadow-glow),
+      0 0 20px var(--radio-shadow-glow-subtle);
 
     animation: radio-light-flicker 3s infinite ease-in-out;
   }
@@ -680,7 +783,8 @@
     place-self: end center;
     width: min(12em, 100%);
     min-height: 1em;
-    background: linear-gradient(90deg, transparent 2px, #f0ba22 0) -1px/1em round;
+    /* background: linear-gradient(90deg, transparent 2px, #f0ba22 0) -1px/1em round; */
+    background: linear-gradient(90deg, transparent 2px, var(--radio-glow) 0) -1px/1em round;
     clip-path:
       polygon(0 calc(100% - 1px),
         0 100%, 100% 100%, 100% 0);
@@ -746,11 +850,11 @@
     width: 80%;
     height: 4px;
     border-radius: 9999px;
-    background: radial-gradient(circle at 50% 50%, #ffe680 0%, #ffca3a 50%, #e8a948 100%);
+    background: radial-gradient(circle at 50% 50%, var(--radio-light-sides) 0%, var(--radio-light-middle) 50%, var(--radio-glow) 100%);
     opacity: .2;
     transition: opacity 0.3s ease;
     box-shadow:
-      0 -1px 4px rgba(255, 200, 50, 0.5);
+      0 -1px 4px var(--radio-shadow-glow-subtle);
   }
 
   /* Light turns on when active */
@@ -773,6 +877,88 @@
     bottom: 0;
     width: 6px;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.4), transparent);
+  }
+
+  .radio-utility-btn[aria-pressed="true"] {
+    background: var(--radio-station-bg);
+    box-shadow: var(--shadow-radio-glow);
+    color: black;
+  }
+
+  @keyframes flyoff {
+    0% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+      opacity: 1;
+    }
+
+    15% {
+      transform: translate(60%, -100%) rotate(-5deg) scale(1);
+    }
+
+    30% {
+      transform: translate(140%, -220%) rotate(-12deg) scale(1.01);
+    }
+
+    45% {
+      transform: translate(220%, -340%) rotate(-18deg) scale(1.03);
+    }
+
+    60% {
+      transform: translate(280%, -450%) rotate(-25deg) scale(1.06);
+    }
+
+    75% {
+      transform: translate(320%, -580%) rotate(-32deg) scale(1.08);
+    }
+
+    90% {
+      transform: translate(345%, -750%) rotate(-38deg) scale(1.1);
+    }
+
+    100% {
+      transform: translate(350%, -900%) rotate(-42deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes flyback {
+    0% {
+      transform: translate(-150%, -150%) rotate(45deg);
+      opacity: 0;
+    }
+
+    10% {
+      transform: translate(0, 0) rotate(45deg);
+      opacity: 1;
+    }
+
+    10.1% {
+      opacity: 1;
+    }
+
+    55% {
+      opacity: 1;
+    }
+
+    60% {
+      transform: translate(1400%, 0%) rotate(45deg);
+      opacity: 0;
+    }
+
+    80% {
+      transform: translate(-150%, 0%) rotate(45deg);
+      opacity: 0;
+    }
+
+    90% {
+      transform: translate(0, 0) rotate(45deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 1;
+    }
   }
 }
 
@@ -846,5 +1032,16 @@
   40%,
   80% {
     transform: translateX(5px);
+  }
+}
+
+/*---break---*/
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
