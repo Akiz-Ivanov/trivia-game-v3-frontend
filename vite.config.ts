@@ -19,6 +19,7 @@ export default defineConfig({
     },
   },
   base: '/',
+  publicDir: 'public',
   build: {
     rollupOptions: {
       output: {

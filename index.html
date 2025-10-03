@@ -5,8 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="A fast-paced trivia game">
-  <link rel="preload" href="/fonts/poppins/hinted-subset-Poppins-Medium.woff2" as="font" type="font/woff2"
-    crossorigin>
+  <link rel="preload" href="/fonts/poppins/hinted-subset-Poppins-Medium.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Inline critical CSS -->
   <style>
@@ -20,8 +19,19 @@
     }
   </style>
 
-  <link rel="shortcut icon" href="/favicon-32x32.png" type="image/x-icon">
-  <title>Trivia Game</title>
+  <!-- Modern browsers: SVG favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Fallback: PNG favicon -->
+  <link rel="icon" href="/icon-512x512.png" sizes="512x512" type="image/png" />
+
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="/icon-192x192.png" />
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <title>TriviaFlair</title>
 </head>
 
 <body>

@@ -1,6 +1,7 @@
 # 🧠 Trivia Flair 3.0
 
 [![Play Online](https://img.shields.io/badge/Play-Live-green?style=for-the-badge)](https://trivia-game-v3-frontend.onrender.com/)
+![PWA Ready](https://img.shields.io/badge/PWA-Ready-success?style=for-the-badge)
 
 A full-stack trivia game with integrated radio player! Built with React, TypeScript, Node.js, and MongoDB. Features trivia gameplay, AI-powered hints, and a fully functional radio widget with thousands of live stations.
 
@@ -14,6 +15,7 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
   - [🎵 Radio Widget](#-radio-widget)
   - [🔐 User System](#-user-system)
   - [🚀 Backend Infrastructure](#-backend-infrastructure)
+- [📱 Progressive Web App](#-progressive-web-app)
 - [🎯 Features](#-features)
   - [Trivia Game](#trivia-game)
   - [Radio Player](#radio-player)
@@ -52,6 +54,31 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 
 [Backend Repository](https://github.com/Akiz-Ivanov/trivia-game-v3-backend)
 
+## 📱 Progressive Web App
+
+TriviaFlair is installable as a Progressive Web App, providing a native app-like experience:
+
+- **Installable** - Add to home screen on mobile or desktop for quick access
+- **Standalone Mode** - Runs without browser UI for an immersive experience
+- **Optimized Loading** - Service worker caching for faster subsequent visits
+- **App-like Feel** - Custom theme colors and splash screen
+
+### Installing the PWA
+
+**Desktop (Chrome/Edge):**
+1. Visit the live app
+2. Click the install icon in the address bar (or three-dot menu → "Install TriviaFlair")
+3. Click "Install" in the popup
+4. Launch from your desktop or start menu
+
+**Mobile (Chrome/Safari):**
+1. Visit the live app
+2. Tap the share button or three-dot menu
+3. Select "Add to Home Screen"
+4. Confirm installation
+
+> **Note:** Full offline gameplay is not yet supported as the app relies on external APIs (OpenTriviaDB, Radio Browser, DeepInfra). The app shell is cached for faster loading, with full offline mode planned for future updates.
+
 ## 🎯 Features
 
 ### Trivia Game
@@ -84,6 +111,7 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 - **Fuse.js** for search & fuzzy matching
 - **Sonner** for notifications
 - **@dnd-kit** for drag-and-drop interactions
+- **PWA** with service worker and web manifest
 
 ### Backend
 - **Node.js** + **Express**
@@ -124,7 +152,9 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 - **Radio Browser API** for radio station data  
 
 ### Assets & Libraries
-- **Lucide** for icons  
+- **Lucide** for icons
+- **react-icons** (Ionicons & Game Icons) for additional iconography
+- **Game Icons** for favicon (GiPerspectiveDiceSixFacesRandom)
 - **Storyset** for illustrations  
 - **Freepik** for SVGs 
 - **Vecteezy** for additional vector graphics
