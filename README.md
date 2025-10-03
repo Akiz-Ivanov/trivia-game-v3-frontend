@@ -1,6 +1,6 @@
-# 🧠 Trivia Flair 3.0
+# <img src="./public/icon-192x192.png" width="30" height="30" alt="Trivia Flair Icon"> Trivia Flair 3.0
 
-[![Play Online](https://img.shields.io/badge/Play-Live-green?style=for-the-badge)](https://trivia-game-v3-frontend.onrender.com/)
+[![Play Live](https://img.shields.io/badge/Play%20Live-blue?style=for-the-badge&logo=web&logoColor=white)](https://trivia-game-v3-frontend.onrender.com/)
 
 A full-stack trivia game with integrated radio player! Built with React, TypeScript, Node.js, and MongoDB. Features trivia gameplay, AI-powered hints, and a fully functional radio widget with thousands of live stations.
 
@@ -55,7 +55,7 @@ A full-stack trivia game with integrated radio player! Built with React, TypeScr
 
 ## 📱 Progressive Web App
 
-![PWA Ready](https://img.shields.io/badge/PWA-Ready-success?style=for-the-badge)
+![PWA Ready](https://img.shields.io/badge/PWA-Ready-5b47db?style=for-the-badge)
 
 TriviaFlair is installable as a Progressive Web App, providing a native app-like experience:
 
