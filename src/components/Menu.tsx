@@ -70,7 +70,7 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
       active:scale-95 active:shadow-[0_0_8px_rgba(0,195,255,0.2)]
       focus-visible:ring-2 focus-visible:ring-white/50
       focus-visible:ring-offset-2 focus-visible:ring-offset-background
-      "
+      bg-gradient-to-br from-cyan-500/70 to-blue-500/70"
     >
       <span className="inline-flex justify-center items-center gap-1 relative">
         {icon}

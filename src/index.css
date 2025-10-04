@@ -513,7 +513,6 @@
       0 0 0 0.1rem #ffffff44 inset,
       0 0 0.6rem rgba(255, 255, 255, 0.1);
     border-radius: .5rem;
-    background-color: oklch(65% 0.22 270);
 
     @supports (corner-shape: squircle) {
       border-radius: 1.5rem;
@@ -527,8 +526,7 @@
       0 0 0 0.1rem #ffffff44 inset,
       0 0 0.6rem rgba(255, 255, 255, 0.1);
     border-radius: .5rem;
-    background-color: oklch(65% 0.22 270);
-    background-image: url('/src/assets/backgrounds/scribble.svg');
+    /* background-color: oklch(65% 0.22 270); */
 
     @supports (corner-shape: squircle) {
       border-radius: 1.5rem;
