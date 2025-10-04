@@ -132,6 +132,7 @@ const Attributions = ({ open, onOpenChange }: AttributionsProps) => {
                             </ExternalLink>
                         </li>
                     </ul>
+                    
                     <aside className="w-full flex flex-row justify-between items-center gap-4 mt-4">
 
                         <ExternalLink href="https://storyset.com/" title="Illustrations provided by Storyset">
