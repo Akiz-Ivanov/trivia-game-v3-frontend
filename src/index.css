@@ -324,7 +324,7 @@
   }
 
   body {
-    @apply flex flex-col items-center justify-center bg-background text-foreground font-medium;
+    @apply flex flex-col items-center justify-center bg-background text-foreground font-medium relative;
     min-height: 100vh;
     min-height: 100dvh;
 

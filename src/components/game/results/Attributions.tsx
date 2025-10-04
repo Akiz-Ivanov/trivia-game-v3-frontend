@@ -185,6 +185,21 @@ const Attributions = ({ open, onOpenChange }: AttributionsProps) => {
 
                     </aside>
                 </section>
+                <section className="space-y-2">
+                    <h2>- UI Components</h2>
+                    <ul className="text-sm">
+                        <li>
+                            <ExternalLink href="https://ui.shadcn.com/">
+                                shadcn/ui
+                            </ExternalLink>
+                        </li>
+                        <li>
+                            <ExternalLink href="https://ui.aceternity.com/">
+                                Aceternity UI Components
+                            </ExternalLink>
+                        </li>
+                    </ul>
+                </section>
                 <section>
                     <h2>
                         - Audio

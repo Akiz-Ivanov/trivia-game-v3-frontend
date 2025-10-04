@@ -7,9 +7,10 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     const [settings, setSettings] = useLocalStorageState<Settings>("settings", {
         animations: true,
         illustrations: true,
-        backgroundPattern: true,
         backgroundGlow: true,
         sound: true,
+        backgroundPattern: true,
+        sparkles: true,
         radioTheme: 'retro'
     })
 
@@ -55,6 +56,13 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
         }))
     }
 
+    const toggleSparkles = () => {
+        setSettings(prevSettings => ({
+            ...prevSettings,
+            sparkles: !prevSettings.sparkles
+        }))
+    }
+
     return (
         <SettingsContext.Provider value={{
             settings,
@@ -63,6 +71,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
             toggleBackgroundPattern,
             toggleBackgroundGlow,
             toggleSound,
+            toggleSparkles,
             setRadioTheme
         }}>
             {children}

@@ -37,7 +37,7 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
     {
       label: "Settings",
       onClick: () => setOpenSettings(true),
-      icon: <IoConstruct size={20} aria-hidden="true" className="text-yellow-600" />
+      icon: <IoConstruct size={20} aria-hidden="true" className="text-yellow-500" />
     },
     user ?
       {

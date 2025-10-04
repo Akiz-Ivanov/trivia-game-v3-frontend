@@ -16,6 +16,7 @@ import RadioWidget from './components/radio/RadioWidget'
 import { RadioProvider } from './context/RadioProvider'
 import useLocalStorageState from './hooks/useLocalStorageState'
 import { showToastInfo } from './components/common/ToastWrapper'
+import { SparklesCore } from "@/components/ui/sparkles"
 
 //* ====== Types ======
 import type { TriviaQuestion } from './types/trivia-db.types'
@@ -121,61 +122,76 @@ function App(): React.JSX.Element {
   }
 
   return (
-    <main className='w-full h-fit xs:px-16-128 xs:py-8 overflow-x-hidden'>
-      <div className='flex flex-col items-center justify-center w-full max-w-[30rem] xs:max-w-[37.5rem]'>
-        {screen === "game" || screen === "form" ?
-          <ReturnToMenu
-            onReturnToMenu={handleReturnToMenu}
-          /> : null
-        }
-        {screen !== "menu" && <SettingsDialog />}
-        <ErrorBoundary FallbackComponent={ErrorScreen} onReset={resetGame}>
-          {screen === "loading" && (
-            <div className='text-chart-4 flex flex-col gap-2 items-center justify-center'>
-              <GiPerspectiveDiceSixFacesRandom size={60} aria-hidden="true" className="animate-dice-spinning" />
-              <h2 className='tracking-wide'>Loading...</h2>
-            </div>
-          )}
-          {screen === "error" && (
-            <ErrorScreen resetErrorBoundary={() => setScreen("form")} />
-          )}
-          {screen === "menu" && (
-            <Menu
-              onFormStart={handleFormStart}
-              toggleRadio={() => setIsRadioOn(prev => !prev)}
-              isRadioOn={isRadioOn}
-              handleQuickPlay={startGame}
-            // isFirstRender={isFirstRender}
-            />
-          )}
-          {screen === "form" && (
-            <GameForm
-              formData={formData}
-              onSubmit={handleFormSubmit}
-              onChange={handleChange}
-              isFirstRender={isFirstRender}
-            />
-          )}
-          {screen === "game" && (
-            <GameManager
-              triviaData={triviaData}
-              resetGame={resetGame}
-            />
-          )}
-          <Toaster
-            position="bottom-center"
-          />
-          {isRadioOn && (
-            <RadioProvider>
-              <RadioWidget powerOff={() => {
-                setIsRadioOn(false)
-                showToastInfo("Radio turned off! You can turn it back on in the menu.")
-              }} />
-            </RadioProvider>
-          )}
-        </ErrorBoundary>
+    <>
+      {settings.sparkles && (
+        <div className="w-full absolute inset-0 h-screen pointer-events-none">
+        <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={1}
+          maxSize={2}
+          particleDensity={10}
+          className="w-full h-full"
+          particleColor="#1693f1"
+        />
       </div>
-    </main>
+      )}
+      <main className='w-full h-fit xs:px-16-128 xs:py-8 overflow-x-hidden'>
+        <div className='flex flex-col items-center justify-center w-full max-w-[30rem] xs:max-w-[37.5rem]'>
+          {screen === "game" || screen === "form" ?
+            <ReturnToMenu
+              onReturnToMenu={handleReturnToMenu}
+            /> : null
+          }
+          {screen !== "menu" && <SettingsDialog />}
+          <ErrorBoundary FallbackComponent={ErrorScreen} onReset={resetGame}>
+            {screen === "loading" && (
+              <div className='text-chart-4 flex flex-col gap-2 items-center justify-center'>
+                <GiPerspectiveDiceSixFacesRandom size={60} aria-hidden="true" className="animate-dice-spinning" />
+                <h2 className='tracking-wide'>Loading...</h2>
+              </div>
+            )}
+            {screen === "error" && (
+              <ErrorScreen resetErrorBoundary={() => setScreen("form")} />
+            )}
+            {screen === "menu" && (
+              <Menu
+                onFormStart={handleFormStart}
+                toggleRadio={() => setIsRadioOn(prev => !prev)}
+                isRadioOn={isRadioOn}
+                handleQuickPlay={startGame}
+              // isFirstRender={isFirstRender}
+              />
+            )}
+            {screen === "form" && (
+              <GameForm
+                formData={formData}
+                onSubmit={handleFormSubmit}
+                onChange={handleChange}
+                isFirstRender={isFirstRender}
+              />
+            )}
+            {screen === "game" && (
+              <GameManager
+                triviaData={triviaData}
+                resetGame={resetGame}
+              />
+            )}
+            <Toaster
+              position="bottom-center"
+            />
+            {isRadioOn && (
+              <RadioProvider>
+                <RadioWidget powerOff={() => {
+                  setIsRadioOn(false)
+                  showToastInfo("Radio turned off! You can turn it back on in the menu.")
+                }} />
+              </RadioProvider>
+            )}
+          </ErrorBoundary>
+        </div>
+      </main>
+    </>
   )
 }
 

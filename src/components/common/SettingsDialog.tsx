@@ -19,9 +19,16 @@ type SettingsDialogProps = {
 
 const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
 
-    const { settings, toggleAnimations, toggleIllustrations, toggleBackgroundPattern, toggleBackgroundGlow, toggleSound } = useSettings()
+    const { settings, 
+        toggleAnimations, 
+        toggleIllustrations, 
+        toggleBackgroundPattern, 
+        toggleBackgroundGlow, 
+        toggleSound,
+        toggleSparkles  
+    } = useSettings()
 
-    const { animations, illustrations, backgroundPattern, backgroundGlow, sound } = settings
+    const { animations, illustrations, backgroundPattern, backgroundGlow, sound, sparkles } = settings
 
     const isControlled = open !== undefined && onOpenChange !== undefined
 
@@ -56,6 +63,7 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
                     <ToggleSwitch id="background-pattern-toggle" label="Background" checked={backgroundPattern} onChange={toggleBackgroundPattern} />
                     <ToggleSwitch id="glow-toggle" label="Glow" checked={backgroundGlow} onChange={toggleBackgroundGlow} />
                     <ToggleSwitch id="sound-toggle" label="Sound" checked={sound} onChange={toggleSound} />
+                    <ToggleSwitch id="sparkles-toggle" label="Sparkles" checked={sparkles} onChange={toggleSparkles} />
                 </div>
             </DialogContent>
         </Dialog>
