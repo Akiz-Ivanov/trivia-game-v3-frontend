@@ -10,8 +10,7 @@ import MenuItem from "./MenuItem"
 import ToggleSwitch from "./common/ToggleSwitch"
 import { cn } from "@/lib/utils"
 import { useSettings } from "@/hooks/useSettings"
-import { IoRocket, IoMusicalNotes, IoFlash, IoConstruct } from "react-icons/io5"
-import { RiLoginBoxLine, RiLogoutBoxLine } from "react-icons/ri"
+import { IoRocket, IoMusicalNotes, IoFlash, IoConstruct, IoLogInOutline, IoLogOutOutline } from "react-icons/io5"
 import { GiScrollQuill, GiBookmark } from "react-icons/gi"
 import { showToastSuccess } from "./common/ToastWrapper"
 
@@ -44,13 +43,13 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
       {
         label: "Sign out",
         onClick: () => setOpenLogout(true),
-        icon: <RiLogoutBoxLine size={20} className="text-error-foreground" aria-hidden="true" />
+        icon: <IoLogOutOutline size={20} className="text-error-foreground" aria-hidden="true" />
       }
       :
       {
         label: "Sign in",
         onClick: () => setOpenLogin(true),
-        icon: <RiLoginBoxLine size={20} aria-hidden="true" className="text-green-400" />
+        icon: <IoLogInOutline size={20} aria-hidden="true" className="text-green-400" />
       },
     {
       label: "About",

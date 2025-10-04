@@ -13,7 +13,6 @@ import { useSettings } from "@/hooks/useSettings"
 
 const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
   
-  // const [theme, setTheme] = useState<'vintage' | 'modern'>('modern')
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const [openScreen, setOpenScreen] = useState<boolean>(false)

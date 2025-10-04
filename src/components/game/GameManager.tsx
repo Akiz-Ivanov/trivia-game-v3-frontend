@@ -3,7 +3,7 @@ import shuffleArray from '@/utils/shuffle'
 import QuizCard from './trivia/QuizCard'
 import Results from './results/Results'
 import { AnimatePresence } from 'framer-motion'
-import { playCorrectSound } from "@/utils/soundManager"
+import { playCorrectSound, playIncorrectSound } from "@/utils/soundManager"
 
 import type { TriviaQuestion } from '@/types/trivia-db.types'
 
@@ -52,6 +52,8 @@ const GameManager = ({ triviaData, resetGame }: GameManagerProps): React.JSX.Ele
         if (isCorrect) {
             setScore(prev => prev + 1)
             playCorrectSound()
+        } else {
+            playIncorrectSound()
         }
     }
 

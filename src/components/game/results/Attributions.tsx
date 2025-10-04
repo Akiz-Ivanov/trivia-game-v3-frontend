@@ -75,6 +75,24 @@ const Attributions = ({ open, onOpenChange }: AttributionsProps) => {
                                 />
                             </ExternalLink>
                         </li>
+                        <li className="text-center text-chart-3">
+                            <ExternalLink href="https://ionic.io/ionicons" >
+                                Ionicons
+                            </ExternalLink>
+                            <ExternalLink href="https://ionic.io/ionicons">
+                                <img src="https://cdn.brandfetch.io/id83txA2NU/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1759045273514" alt="Ionicons Logo" className="w-17 hover:scale-105 transition-transform duration-300 ease-in-out mx-auto mt-3 will-change-transform"
+                                />
+                            </ExternalLink>
+                        </li>
+                        <li className="text-center text-chart-3">
+                            <ExternalLink href="https://game-icons.net/" >
+                                Game Icons
+                            </ExternalLink>
+                            <ExternalLink href="https://game-icons.net/">
+                                <img src="https://game-icons.net/icons/ffffff/000000/1x1/delapouite/biceps.svg" alt="Game Icons Logo" className="w-17 hover:scale-105 transition-transform duration-300 ease-in-out mx-auto mt-3 will-change-transform bg-slate-800 rounded p-2"
+                                />
+                            </ExternalLink>
+                        </li>
                     </ul>
                 </section>
 
@@ -131,8 +149,13 @@ const Attributions = ({ open, onOpenChange }: AttributionsProps) => {
                                 Cat Boombox Vector by catalyststuff on Freepik
                             </ExternalLink>
                         </li>
+                        <li>
+                            <ExternalLink href="https://www.freepik.com/free-photo/gray-smooth-textured-background-design_16381226.htm">
+                                Gray Metallic Texture by rawpixel.com on Freepik
+                            </ExternalLink>
+                        </li>
                     </ul>
-                    
+
                     <aside className="w-full flex flex-row justify-between items-center gap-4 mt-4">
 
                         <ExternalLink href="https://storyset.com/" title="Illustrations provided by Storyset">
@@ -170,6 +193,11 @@ const Attributions = ({ open, onOpenChange }: AttributionsProps) => {
                         <li>
                             <ExternalLink href="https://freesound.org/people/oggraphics/sounds/610703/">
                                 "Good answer harp glissando.wav"
+                            </ExternalLink>
+                        </li>
+                        <li>
+                            <ExternalLink href="https://mixkit.co/free-sound-effects/">
+                                "Wrong answer fail notification" from Mixkit
                             </ExternalLink>
                         </li>
                     </ul>

@@ -46,7 +46,7 @@ const MenuItem = ({
       className="w-full max-w-2xs lg:max-w-xs mb-1"
     >
       <div className={cn(`
-        menu-collapsible rounded-xl will-change-transform
+        menu-collapsible rounded-xl will-change-[transform,opacity]
         transition-all duration-300 ease-in-out
         shadow-[inset_0_0_0_0.1rem_#ffffff44,_0_0_15px_rgba(0,195,255,0.4)]
         bg-gradient-to-br from-cyan-500/70 to-blue-500/70

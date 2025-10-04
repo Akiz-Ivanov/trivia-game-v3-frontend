@@ -16,22 +16,20 @@ const InfoPanelAI = ({ content, open }: { content: string, open: boolean }) => {
         return () => clearTimeout(timeout)
     }, [open])
 
-    // Don't render at all when not open
-    // if (!open) return null
-
-    // The reason why it wasn't working is because of if (!open) return null and collapsible and // value="ai-panel" // Always open when rendered
-    // Mainly because of trying to make accordion not focusable when closed
-
     return (
         <Accordion
             type="single"
-            aria-hidden={!open}
-            collapsible value={open ? "ai-panel" : ""}
-            // value="ai-panel" // Always open when rendered
+            collapsible
+            value={open ? "ai-panel" : ""}
             className="w-full purple-bg rounded-aicard mt-2"
         >
             <AccordionItem value="ai-panel">
-                <AccordionTrigger className="sr-only">
+                <AccordionTrigger
+                    className="sr-only"
+                    tabIndex={open ? 0 : -1}
+                    aria-hidden={!open}
+                    disabled={!open}
+                >
                     Hint/Info Panel
                 </AccordionTrigger>
                 <AccordionContent
