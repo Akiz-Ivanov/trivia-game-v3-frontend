@@ -51,7 +51,7 @@ const ReturnToMenu = ({ onReturnToMenu }: ReturnToMenuProps) => {
         </AlertDialogHeader>
         <AlertDialogFooter className="flex flex-column justify-center gap-4 w-2/3 mx-auto">
           <AlertDialogCancel asChild>
-            <Button variant="outline" className="py-3 px-4 hover:bg-chart-5">Cancel</Button>
+            <Button variant="outline" className="py-3 px-4 hover:bg-chart-3 hover:text-black">Cancel</Button>
           </AlertDialogCancel>
           <AlertDialogAction onClick={onReturnToMenu} asChild>
             <Button variant="destructive" className="py-3 px-4 bg-destructive hover:bg-destructive/70">Return to menu</Button>
@@ -64,7 +64,7 @@ const ReturnToMenu = ({ onReturnToMenu }: ReturnToMenuProps) => {
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <RegularButton
-            className="absolute top-2 left-2 z-50 rounded-[1rem] hover:rounded-[0.5rem] px-2 py-1 flex gap-1 bg-popover border-2 border-border/50 hover:border-border hover:bg-accent/50 transition-all duration-300 group"
+            className="absolute top-2 left-2 z-50 rounded-[1rem] hover:rounded-[0.5rem] px-2 py-1 flex gap-1 bg-popover border-2 border-border/50 hover:border-border hover:bg-primary/50 transition-all duration-300 group"
             title="Return to menu"
           >
             <ArrowBigLeft className="rounded-full size-5 bg-muted/50 duration-300
@@ -83,7 +83,7 @@ const ReturnToMenu = ({ onReturnToMenu }: ReturnToMenuProps) => {
           </AlertDialogHeader>
           <AlertDialogFooter className="flex flex-row justify-center gap-4 mx-auto">
             <AlertDialogCancel asChild>
-              <Button variant="outline" className="py-2 px-4 hover:bg-chart-5">Cancel</Button>
+              <Button variant="outline" className="py-2 px-4 hover:bg-chart-3">Cancel</Button>
             </AlertDialogCancel>
             <AlertDialogAction onClick={onReturnToMenu} asChild>
               <Button variant="destructive" className="py-2 px-4 bg-destructive hover:bg-destructive/70">Return to menu</Button>

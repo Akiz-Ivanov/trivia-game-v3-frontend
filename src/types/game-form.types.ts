@@ -8,5 +8,4 @@ export type GameFormProps = {
     formData: GameFormData
     onSubmit: React.FormEventHandler<HTMLFormElement>
     onChange: (key: string, value: string) => void
-    isFirstRender: boolean
 }

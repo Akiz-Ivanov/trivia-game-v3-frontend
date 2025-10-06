@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import { cn } from "@/lib/utils"
 import { ArrowRight, BarChart2, Eye, EyeOff } from "lucide-react"
-
 import { getPreloadedCategoryBg } from "@/assets/imports.ts"
 import shuffleArray from "@/utils/shuffle.js"
 import insertSoftHyphens from "@/utils/insertSoftHyphens.js"
@@ -52,7 +51,16 @@ export default function QuizCard({
     const shouldAnimate = settings.animations
 
     //* Refs
-    const nextButtonRef: React.RefObject<HTMLButtonElement | null> = useRef<HTMLButtonElement>(null);
+    const firstAnswerRef = useRef<HTMLButtonElement>(null)
+    const nextButtonRef: React.RefObject<HTMLButtonElement | null> = useRef<HTMLButtonElement>(null)
+
+    //* ====== Focus first answer when question changes ======
+    useEffect(() => {
+        // Only focus if no answer is selected yet
+        if (!selectedAnswer) {
+            firstAnswerRef.current?.focus()
+        }
+    }, [questionData.id])
 
     //* ====== Focus on next question button when answer is selected ======
     useEffect(() => {
@@ -64,7 +72,7 @@ export default function QuizCard({
     //* ====== Reset removedAnswers when question changes ======
     useEffect(() => {
         setRemovedAnswers([])
-    }, [questionData])
+    }, [questionData.id])
 
     //* ====== Load category background ======
     useEffect(() => {
@@ -80,7 +88,7 @@ export default function QuizCard({
     }
 
     //* ====== Render Answers ======
-    const renderAnswers = answers.map((answer: string) => {
+    const renderAnswers = answers.map((answer: string, index: number) => {
 
         const isSelected = answer === selectedAnswer;
         const isCorrect = answer === questionData.correct_answer;
@@ -91,6 +99,7 @@ export default function QuizCard({
         return (
             <motion.button
                 key={`${questionData.id}-${answer}`}
+                ref={index === 0 ? firstAnswerRef : null}
                 whileHover={{ scale: 1.05 }}
                 type="button"
                 role="listitem"
@@ -174,7 +183,7 @@ export default function QuizCard({
                     type="button"
                     onClick={toggleMetaVisibility}
                     className={cn(
-                        "rounded-full bg-popover text-chart-1/50",
+                        "rounded-full bg-popover text-accent/50",
                         "transition-all duration-400 focus:outline-none focus:ring-2 focus:ring-ring/50",
                         "opacity-50 hover:opacity-100 hover:outline-1 hover:outline-ring",
                         "flex items-center justify-center overflow-hidden",
@@ -230,6 +239,19 @@ export default function QuizCard({
                 aria-labelledby={`question-${questionData.id}`}
                 aria-describedby="answer-instruction"
                 className="btn-wrapper grid md:grid-cols-2 gap-6 w-full my-4"
+                onKeyDown={(e) => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                        e.preventDefault()
+                        const focused = document.activeElement as HTMLElement
+                        const next = focused.nextElementSibling as HTMLElement
+                        next?.focus()
+                    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                        e.preventDefault()
+                        const focused = document.activeElement as HTMLElement
+                        const prev = focused.previousElementSibling as HTMLElement
+                        prev?.focus()
+                    }
+                }}
             >
                 {renderAnswers}
             </div>

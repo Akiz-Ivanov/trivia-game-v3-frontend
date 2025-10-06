@@ -11,9 +11,15 @@ import { cn } from "@/lib/utils"
 import RadioCatSvg from "@/assets/svgs/radio-cat.svg?react"
 import { useSettings } from "@/hooks/useSettings"
 
-const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
+type RadioWidgetProps = {
+  powerOff: () => void
+  isRadioOpen: boolean
+  handleRadioOpen: () => void
+  handleRadioClose: () => void
+}
+
+const RadioWidget = ({ powerOff, isRadioOpen, handleRadioOpen, handleRadioClose }: RadioWidgetProps) => {
   
-  const [isOpen, setIsOpen] = useState<boolean>(false)
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const [openScreen, setOpenScreen] = useState<boolean>(false)
 
@@ -54,7 +60,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
 
         //* Only close if it's not a popover-related click
         if (!isPopoverClick) {
-          setIsOpen(false)
+          handleRadioClose()
         }
       }
     }
@@ -87,12 +93,12 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
       className={cn(
         "fixed z-50",
         {
-          "bottom-2 right-2": isOpen,
-          "bottom-0 right-0": !isOpen
+          "bottom-2 right-2": isRadioOpen,
+          "bottom-0 right-0": !isRadioOpen
         }
       )}
     >
-      {isOpen ? (
+      {isRadioOpen ? (
         <div
           className="radio-wood-frame"
           style={{ backgroundImage: theme === "retro" ? 'var(--radio-texture)' : 'var(--radio-texture)' }}
@@ -196,7 +202,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
                     className="rounded-full bottom-1 right-3 
                   text-sm inline-flex items-center pr-1 justify-center gap-1 
                   text-radio-glow hover:text-chart-3 transition-colors duration-200"
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleRadioClose}
                   >
                     <Minimize className="size-4" /> Dock
                   </button>
@@ -208,7 +214,7 @@ const RadioWidget = ({ powerOff }: { powerOff: () => void }) => {
         </div>
       ) : (
         <RadioCatSvg
-          onClick={() => setIsOpen(true)}
+          onClick={handleRadioOpen}
           className="w-18 xs:w-22 sm:w-24 lg:w-42 h-auto shadow-lg cursor-pointer
             transition-all duration-300
             [pointer-events:none] [&_*]:[pointer-events:visiblePainted]

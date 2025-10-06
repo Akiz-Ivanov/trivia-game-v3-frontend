@@ -100,8 +100,8 @@ const RadioLookupCombobox = () => {
                   aria-selected={value === item.name}
                   className={cn(
                     "flex w-full items-center px-2 py-1.5 text-sm text-left",
-                    "hover:bg-accent focus:bg-accent focus:outline-none",
-                    "cursor-pointer transition-colors hover:bg-[#925a4a]",
+                    "hover:bg-[#925a4a] focus:bg-[#925a4a]",
+                    "cursor-pointer transition-colors focus:outline-none",
                     "aria-selected:bg-[#925a4a] aria-selected:text-[#18171d]"
                   )}
                   onClick={() => handleSelect(item.name)}

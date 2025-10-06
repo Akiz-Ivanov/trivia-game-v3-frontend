@@ -43,11 +43,6 @@ const RadioDrawer = ({ openDrawer, openScreen }: RadioDrawerProps) => {
         ) : mode === "search" ? (
           <RadioSearchInput />
         ) : null 
-        // (
-        //   <p className="text-sm text-center">
-        //     Welcome! Select a mode inside tuner (country, tag, search) to start exploring stations.
-        //   </p>
-        // )
         }
       </div>
       

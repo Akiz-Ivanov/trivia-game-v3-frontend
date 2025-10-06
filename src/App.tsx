@@ -44,8 +44,8 @@ function App(): React.JSX.Element {
 
   //* ====== UI & Flow State ======
   const [screen, setScreen] = useState<Screen>("menu")
-  const [isFirstRender, setIsFirstRender] = useState<boolean>(true)
   const [isRadioOn, setIsRadioOn] = useLocalStorageState<boolean>("isRadioOn", true)
+  const [isRadioOpen, setIsRadioOpen] = useState<boolean>(false)
 
   //* ====== Function to handle form data changes ======
   const handleChange = (key: string, value: string) => {
@@ -81,8 +81,6 @@ function App(): React.JSX.Element {
       console.error("Trivia fetch error:", err)
       setScreen("error")
     }
-
-    setIsFirstRender(false)
   }
 
   //*====== Form Submit (Starts Game) ======
@@ -125,19 +123,22 @@ function App(): React.JSX.Element {
     <>
       {settings.sparkles && (
         <div className="w-full absolute inset-0 h-screen pointer-events-none">
-        <SparklesCore
-          id="tsparticlesfullpage"
-          background="transparent"
-          minSize={1}
-          maxSize={2}
-          particleDensity={10}
-          className="w-full h-full"
-          particleColor="#1693f1"
-        />
-      </div>
+          <SparklesCore
+            id="tsparticlesfullpage"
+            background="transparent"
+            minSize={1}
+            maxSize={2}
+            particleDensity={8}
+            className="w-full h-full"
+            particleColor="#1693f1"
+          />
+        </div>
       )}
       <main className='w-full h-fit xs:px-16-128 xs:py-8 overflow-x-hidden'>
         <div className='flex flex-col items-center justify-center w-full max-w-[30rem] xs:max-w-[37.5rem]'>
+          <Toaster
+            position="bottom-center"
+          />
           {screen === "game" || screen === "form" ?
             <ReturnToMenu
               onReturnToMenu={handleReturnToMenu}
@@ -160,7 +161,6 @@ function App(): React.JSX.Element {
                 toggleRadio={() => setIsRadioOn(prev => !prev)}
                 isRadioOn={isRadioOn}
                 handleQuickPlay={startGame}
-              // isFirstRender={isFirstRender}
               />
             )}
             {screen === "form" && (
@@ -168,7 +168,6 @@ function App(): React.JSX.Element {
                 formData={formData}
                 onSubmit={handleFormSubmit}
                 onChange={handleChange}
-                isFirstRender={isFirstRender}
               />
             )}
             {screen === "game" && (
@@ -177,15 +176,17 @@ function App(): React.JSX.Element {
                 resetGame={resetGame}
               />
             )}
-            <Toaster
-              position="bottom-center"
-            />
             {isRadioOn && (
               <RadioProvider>
-                <RadioWidget powerOff={() => {
-                  setIsRadioOn(false)
-                  showToastInfo("Radio turned off! You can turn it back on in the menu.")
-                }} />
+                <RadioWidget
+                  isRadioOpen={isRadioOpen}
+                  handleRadioOpen={() => setIsRadioOpen(true)}
+                  handleRadioClose={() => setIsRadioOpen(false)}
+                  powerOff={() => {
+                    setIsRadioOn(false)
+                    showToastInfo("Radio turned off! You can turn it back on in the menu.")
+                  }}
+                />
               </RadioProvider>
             )}
           </ErrorBoundary>

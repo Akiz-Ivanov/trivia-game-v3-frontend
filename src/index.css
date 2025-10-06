@@ -108,12 +108,10 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
-  --color-skeleton: var(--skeleton);
   --color-error-foreground: var(--error-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-progress-track: var(--progress-track);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -121,6 +119,10 @@
   --color-chart-5: var(--chart-5);
   --color-correct: var(--correct-btn);
   --color-incorrect: var(--incorrect-btn);
+  --color-btn-menu-from: var(--btn-menu-from);
+  --color-btn-menu-to: var(--btn-menu-to);
+  --color-btn-playagain-from: var(--btn-playagain-from);
+  --color-btn-playagain-to: var(--btn-playagain-to);
 
   /* Radio theme colors */
   --color-radio-glow: var(--radio-glow);
@@ -135,6 +137,9 @@
   --color-radio-light-sides: var(--radio-light-sides);
   --color-radio-screen-tab-bg: var(--radio-screen-tab-bg);
   --color-radio-screen-tab-active: var(--radio-screen-tab-active);
+
+  --shadow-inset-border: var(--shadow-inset-border);
+  --shadow-glow-soft: var(--shadow-glow-soft);
 
   /* Radio shadows (can't be used in bg, but useful for box-shadow utilities) */
   --shadow-radio-glow: 0 0 10px var(--radio-shadow-glow), 0 0 20px var(--radio-shadow-glow-subtle);
@@ -155,7 +160,6 @@
   CSS VARIABLES
 ===============================*/
 :root {
-
   --radius: 0.625rem;
   --radius-progressbar: .25rem;
   --radius-aicard: .75rem;
@@ -169,10 +173,10 @@
   --popover: oklch(20% 0.025 282);
   --popover-foreground: oklch(95% 0.02 280);
 
-  --primary: oklch(58.9% 0.13 239);
+  --primary: oklch(62.3% 0.214 259.815);
   --primary-foreground: oklch(98% 0.005 280);
 
-  --accent: oklch(58.9% 0.13 239);
+  --accent: oklch(71.5% 0.143 215.221);
   --accent-foreground: oklch(95% 0.02 280);
 
   --secondary: oklch(68.7% 0.164 263 / 0.1);
@@ -181,25 +185,28 @@
   --muted: oklch(35% 0.015 270);
   --muted-foreground: oklch(92% 0.02 260);
 
-  /* --destructive: oklch(58% 0.25 27); */
   --destructive: oklch(68.417% 0.15155 19.887);
-  --skeleton: oklch(20% 0.025 282);
   --error-foreground: oklch(71.1% 0.166 22.2);
 
   --border: oklch(58.9% 0.13 239);
   --input: oklch(65% 0.18 200);
-  /* --ring: oklch(76.5% 0.151 229 / 0.7); */
   --ring: oklch(82.5% 0.08 260);
-  --progress-track: oklch(70% 0.01 270);
 
   --chart-1: oklch(76.46% 0.151 229.43);
   --chart-2: oklch(59.87% 0.265 335.87);
   --chart-3: oklch(69.6% 0.17 162.48);
   --chart-4: #00f0ff;
-  --chart-5: oklch(63.977% 0.09281 155.827);
 
   --correct-btn: oklch(63.977% 0.09281 155.827);
   --incorrect-btn: oklch(64.734% 0.18145 23.642);
+
+  --btn-menu-from: var(--accent);
+  --btn-menu-to: var(--primary);
+  --btn-playagain-from: #6e8efb;
+  --btn-playagain-to: #a777e3;
+
+  --shadow-inset-border: 0 0 0 0.1rem #ffffff44 inset;
+  --shadow-glow-soft: 0 0 0.6rem rgba(255, 255, 255, 0.1);
 
   --shadow-card: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-1) inset;
   --shadow-card-error: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06),
@@ -222,10 +229,10 @@
   --popover: oklch(20% 0.025 282);
   --popover-foreground: oklch(95% 0.02 280);
 
-  --primary: oklch(58.9% 0.13 239);
+  --primary: oklch(62.3% 0.214 259.815);
   --primary-foreground: oklch(98% 0.005 280);
 
-  --accent: oklch(58.9% 0.13 239);
+  --accent: oklch(71.5% 0.143 215.221);
   --accent-foreground: oklch(95% 0.02 280);
 
   --secondary: oklch(68.7% 0.164 263 / 0.1);
@@ -234,23 +241,25 @@
   --muted: oklch(35% 0.015 270);
   --muted-foreground: oklch(92% 0.02 260);
 
-  --destructive: oklch(58% 0.25 27);
-  --skeleton: oklch(20% 0.025 282);
+  --destructive: oklch(68.417% 0.15155 19.887);
   --error-foreground: oklch(71.1% 0.166 22.2);
 
   --border: oklch(58.9% 0.13 239);
   --input: oklch(65% 0.18 200);
   --ring: oklch(82.5% 0.08 260);
-  --progress-track: oklch(70% 0.01 270);
 
   --chart-1: oklch(76.46% 0.151 229.43);
   --chart-2: oklch(59.87% 0.265 335.87);
   --chart-3: oklch(69.6% 0.17 162.48);
-  --chart-4: oklch(76.5% 0.151 229 / 0.7);
-  --chart-5: oklch(63.977% 0.09281 155.827);
+  --chart-4: #00f0ff;
 
   --correct-btn: oklch(63.977% 0.09281 155.827);
-  --incorrect-btn: oklch(58% 0.24 30);
+  --incorrect-btn: oklch(64.734% 0.18145 23.642);
+
+  --btn-menu-from: var(--accent);
+  --btn-menu-to: var(--primary);
+  --btn-playagain-from: #6e8efb;
+  --btn-playagain-to: #a777e3;
 
   --shadow-card: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06), 0 0 0 0.1rem var(--chart-1) inset;
   --shadow-card-error: 0 0 0 calc(4px + 1px) rgba(255, 255, 255, 0.06),
@@ -335,11 +344,6 @@
       linear-gradient(135deg,
         var(--background),
         color-mix(in oklch, var(--background), white 6%));
-    /* linear-gradient(
-      135deg,
-      oklch(16.5% 0.03 282),
-      oklch(23.203% 0.04242 278.593)
-    ); */
     background-repeat: no-repeat;
     background-size: cover;
     -webkit-backdrop-filter: blur(10px);
@@ -380,6 +384,34 @@
 
   strong {
     @apply text-16-18;
+  }
+
+  /* ====== Scroll bar ====== */
+  /* For Webkit browsers (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+    border-radius: var(--radius);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--accent), var(--primary));
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+  }
+
+  /* For Firefox */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--background);
   }
 }
 
@@ -484,8 +516,8 @@
       linear-gradient(0deg, #7a5af8, #7a5af8);
 
     box-shadow:
-      0 0 0 0.1rem #ffffff44 inset,
-      0 0 0.6rem rgba(255, 255, 255, 0.1);
+      var(--shadow-inset-border),
+      var(--shadow-glow-soft);
     border-radius: 9px;
   }
 
@@ -510,8 +542,8 @@
   .menu-collapsible {
     @apply w-full max-w-2xs lg:max-w-xs text-16-18 mb-1;
     box-shadow:
-      0 0 0 0.1rem #ffffff44 inset,
-      0 0 0.6rem rgba(255, 255, 255, 0.1);
+      var(--shadow-inset-border),
+      var(--shadow-glow-soft);
     border-radius: .5rem;
 
     @supports (corner-shape: squircle) {
@@ -523,8 +555,8 @@
   .menu>button {
     @apply w-full max-w-2xs lg:max-w-xs p-4 text-16-18 mb-1;
     box-shadow:
-      0 0 0 0.1rem #ffffff44 inset,
-      0 0 0.6rem rgba(255, 255, 255, 0.1);
+      var(--shadow-inset-border),
+      var(--shadow-glow-soft);
     border-radius: .5rem;
     /* background-color: oklch(65% 0.22 270); */
 
@@ -536,7 +568,7 @@
 
   .menu>button:hover {
     box-shadow:
-      0 0 0 0.1rem #ffffff44 inset,
+      var(--shadow-inset-border),
       0 0 15px rgba(0, 195, 255, 0.4);
   }
 
@@ -568,7 +600,7 @@
 
   .login-btn {
     box-shadow: 0 4px 20px rgba(166, 119, 227, 0.4),
-      0 0 0 0.1rem #ffffff44 inset;
+      var(--shadow-inset-border);
   }
 
   /* ====== Radio components ====== */

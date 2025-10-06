@@ -41,7 +41,7 @@ const LogoutAlert = ({ open, onOpenChange, onConfirm }: LogoutAlertProps) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel asChild>
-            <Button variant="outline" className="py-2 px-4 hover:bg-chart-5">Cancel</Button>
+            <Button variant="outline" className="py-2 px-4 hover:bg-chart-3">Cancel</Button>
           </AlertDialogCancel>
           <AlertDialogAction onClick={onConfirm} asChild>
             <Button variant="destructive" className="py-2 px-4">Logout</Button>

@@ -6,6 +6,7 @@ import {
   getStationsByClicks,
   getStationByName,
 } from "@/services/radioService"
+import fallbackStations from "@/data/fallbackStations"
 
 import type { Station, UseRadioOptions } from "@/types/radio.types"
 import useLocalStorageState from "./useLocalStorageState"
@@ -240,6 +241,16 @@ const useRadio = (options: UseRadioOptions = {}) => {
     selectStation(activeList[prevIdx])
   }, [activeList, currentStationId, selectStation])
 
+  const loadFallbackStations = useCallback(() => {
+    if (fallbackStations === null) return
+    setStations(fallbackStations)
+    setActiveList(fallbackStations)
+    setActiveListType("search")
+    setFetchError("Loaded fallback stations (server unavailable)")
+    setCurrentStationId(fallbackStations[0].stationuuid)
+    setCurrentStationInfo(fallbackStations[0])
+  }, [])
+
   return {
     stations,
     currentStation,
@@ -260,6 +271,7 @@ const useRadio = (options: UseRadioOptions = {}) => {
       setActiveList(list)
       setActiveListType(type)
     },
+    loadFallbackStations
   }
 }
 

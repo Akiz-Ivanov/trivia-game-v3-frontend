@@ -4,7 +4,7 @@ import { ChevronUp } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-type MenuItemProps = {
+type MenuCollapsibleProps = {
   label: React.ReactNode
   children: React.ReactNode
   onClick?: () => void
@@ -15,7 +15,7 @@ type MenuItemProps = {
   closeButtonClassName?: string
 }
 
-const MenuItem = ({
+const MenuCollapsible = ({
   label,
   children,
   className,
@@ -23,7 +23,7 @@ const MenuItem = ({
   triggerClassName,
   contentClassName,
   closeButtonClassName
-}: MenuItemProps) => {
+}: MenuCollapsibleProps) => {
 
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -48,9 +48,9 @@ const MenuItem = ({
       <div className={cn(`
         menu-collapsible rounded-xl will-change-[transform,opacity]
         transition-all duration-300 ease-in-out
-        shadow-[inset_0_0_0_0.1rem_#ffffff44,_0_0_15px_rgba(0,195,255,0.4)]
-        bg-gradient-to-br from-cyan-500/70 to-blue-500/70
-        ${open ? 'p-0' : 'hover:scale-[1.02] hover:shadow-[inset_0_0_0_0.1rem_#ffffff44,_0_0_15px_rgba(0,195,255,0.4)]'}
+        shadow-[var(--shadow-inset-border),_0_0_15px_rgba(0,195,255,0.4)]
+        bg-gradient-to-br from-accent/70 to-primary/70
+        ${open ? 'p-0' : 'hover:scale-[1.02] hover:shadow-[var(--shadow-inset-border),_0_0_15px_rgba(0,195,255,0.4)]'}
       `, className)}
       >
         <CollapsibleTrigger asChild className={cn("rounded-xl", triggerClassName)}>
@@ -137,4 +137,4 @@ const MenuItem = ({
   )
 }
 
-export default MenuItem
+export default MenuCollapsible

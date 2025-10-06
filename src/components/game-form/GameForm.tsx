@@ -1,4 +1,3 @@
-import { useRef, useEffect } from "react"
 import { randomTitle } from "@/data/data"
 import SelectGroup from "./SelectGroup"
 import RegularButton from "../common/RegularButton"
@@ -12,21 +11,11 @@ import type { GameFormProps } from "../../types/game-form.types"
 const GameForm = ({
     onSubmit,
     onChange,
-    isFirstRender,
     formData
 }: GameFormProps
 ): React.JSX.Element => {
 
     const { settings } = useSettings()
-
-    const formRef = useRef<HTMLDivElement>(null)
-
-    //* ====== Focus form ======
-    useEffect(() => {
-        if (!isFirstRender && formRef.current) {
-            formRef.current.focus()
-        }
-    }, [])
 
     return (
         <div className="relative overflow-hidden xs:overflow-visible xs:rounded-xl">
@@ -46,7 +35,6 @@ const GameForm = ({
 
             {/* ====== Form ====== */}
             <Card
-                ref={formRef}
                 tabIndex={-1}
                 className="
                     relative gap-12 text-left 

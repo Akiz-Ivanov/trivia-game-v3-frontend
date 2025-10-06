@@ -6,7 +6,7 @@ import Attributions from "./game/results/Attributions"
 import useAuth from "@/hooks/useAuth"
 import LogoutAlert from "./auth/LogoutAlert"
 import AuthDialog from "./auth/AuthDialog"
-import MenuItem from "./MenuItem"
+import MenuCollapsible from "./MenuCollapsible"
 import ToggleSwitch from "./common/ToggleSwitch"
 import { cn } from "@/lib/utils"
 import { useSettings } from "@/hooks/useSettings"
@@ -62,14 +62,7 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
     <RegularButton
       key={label}
       onClick={onClick}
-      className="
-      bg-origin-border will-change-transform
-      transition-transform duration-200 ease-in-out
-      focus:border-none outline-none hover:scale-[1.02]
-      active:scale-95 active:shadow-[0_0_8px_rgba(0,195,255,0.2)]
-      focus-visible:ring-2 focus-visible:ring-white/50
-      focus-visible:ring-offset-2 focus-visible:ring-offset-background
-      bg-gradient-to-br from-cyan-500/70 to-blue-500/70"
+      variant="menu"
     >
       <span className="inline-flex justify-center items-center gap-1 relative">
         {icon}
@@ -88,7 +81,7 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
 
       <h1 className="mb-4 p-0">TriviaFlair</h1>
 
-      <MenuItem
+      <MenuCollapsible
         onMenuOpened={() => setShouldAnimateRocket(true)}
         label={
           <span className="inline-flex justify-center items-center gap-1 relative">
@@ -126,9 +119,9 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
           ">
           <IoFlash size={20} aria-hidden="true" className="text-chart-4" /> Quick Play
         </RegularButton>
-      </MenuItem>
+      </MenuCollapsible>
 
-      <MenuItem
+      <MenuCollapsible
         label={(
           <span className="inline-flex justify-center items-center gap-1 relative">
             <IoMusicalNotes
@@ -172,7 +165,7 @@ const Menu = ({ onFormStart, toggleRadio, isRadioOn, handleQuickPlay }: MenuProp
           </div>
         </div>
 
-      </MenuItem>
+      </MenuCollapsible>
 
       {renderMenuButtons}
 

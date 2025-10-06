@@ -62,7 +62,8 @@ const StationList = () => {
     toggleFavorite,
     isFavorite,
     setActiveList,
-    reorderFavorites
+    reorderFavorites,
+    loadFallbackStations,
   } = useRadioContext()
 
   // Handle drag end for favorites
@@ -158,16 +159,29 @@ const StationList = () => {
                 <div
                   role="alert"
                   aria-live="assertive"
-                  className="h-full flex items-center justify-center text-error-foreground p-4 text-center text-base"
+                  className="h-full text-sm flex flex-col gap-2 items-center justify-center text-error-foreground p-4 text-center"
                 >
-                  {fetchError}
+                  <p>{fetchError}</p>
+                  <p className="text-accent">The server is temporarily unavailable. You can load fallback stations until it reconnects</p>
+                  <button
+                    onClick={() => loadFallbackStations()}
+                    className="text-sm text-radio-light-sides border border-radio-light-sides rounded-md px-3 py-1 hover:bg-radio-light-sides hover:text-black transition-colors"
+                  >
+                    Load fallback stations
+                  </button>
                 </div>
               ) : (
                 <div
                   role="status"
-                  className="h-full flex items-center justify-center text-radio-light-middle p-4 text-center"
+                  className="h-full text-15-16 flex flex-col gap-2 items-center justify-center text-radio-light-middle p-4 text-center"
                 >
-                  No stations found. Try different search.
+                  <p>No stations found. Try different search or load fallback stations.</p>
+                  <button
+                    onClick={() => loadFallbackStations()}
+                    className="text-sm text-radio-light-sides border border-radio-light-sides rounded-md px-3 py-1 hover:bg-radio-light-sides hover:text-black transition-colors"
+                  >
+                    Load fallback stations
+                  </button>
                 </div>
               )
             )

@@ -59,7 +59,7 @@ const SelectGroup = ({ onChange, formData }: SelectType): React.JSX.Element => {
                     <SelectTrigger
                         id={key}
                         className="main-action w-full mt-2.5 cursor-pointer px-4 
-                            hover:shadow-xl shadow-accent/10
+                            hover:shadow-xl shadow-primary/10
                             hover:[text-shadow:0_0_6px_hsl(220_100%_70%)] 
                             ring-1 ring-ring bg-[oklch(20%_0.025_282_/_0.3)]"
                     >

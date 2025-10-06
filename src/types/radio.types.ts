@@ -42,4 +42,5 @@ export type UseRadioReturn = {
   toggleFavorite: (station: Station) => void
   isFavorite: (uuid: string) => boolean
   reorderFavorites: (newOrder: Station[]) => void
+  loadFallbackStations: () => void
 }
