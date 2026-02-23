@@ -339,18 +339,7 @@
 
     font-family: 'Poppins', system-ui, sans-serif;
 
-    background-image:
-      url('/src/assets/backgrounds/scribble.svg'),
-      linear-gradient(135deg,
-        var(--background),
-        color-mix(in oklch, var(--background), white 6%));
-    background-repeat: no-repeat;
-    background-size: cover;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
 
-    background-size: 150%;
-    animation: zoomDrift 150s linear infinite;
   }
 
   main {
@@ -425,7 +414,7 @@
   }
 
   .minimal-mode-illustrations {
-    background-image: none;
+    background-image: none !important;
   }
 
   .main-action {
@@ -1081,5 +1070,20 @@
 
   body {
     background-image: none !important;
+  }
+}
+
+@media (min-width: 48rem) {
+  body {
+    background-image:
+      url('/src/assets/backgrounds/scribble.svg'),
+      linear-gradient(135deg,
+        var(--background),
+        color-mix(in oklch, var(--background), white 6%));
+    background-repeat: no-repeat;
+    background-size: 150%;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    animation: zoomDrift 150s linear infinite;
   }
 }
