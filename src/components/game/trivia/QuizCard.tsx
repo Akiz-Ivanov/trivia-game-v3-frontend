@@ -116,7 +116,7 @@ export default function QuizCard({
                     "transition-transform duration-200 ease-in-out",
                     "hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(0,195,255,0.4)]",
                     "active:scale-95 active:shadow-[0_0_8px_rgba(0,195,255,0.2)]",
-                    "focus:border-none outline-none",
+                    "outline-none focus-visible:border-transparent",
                     "focus-visible:ring-2 focus-visible:ring-ring",
                     "focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     {
@@ -273,7 +273,7 @@ export default function QuizCard({
                     "rounded-[2rem] border-2 border-white/30 bg-origin-border",
                     "transition-all duration-300 ease-in-out backdrop-blur-[4px]",
                     "hover:scale-[1.03] active:scale-95 active:shadow-[0_0_8px_rgba(0,195,255,0.2)]",
-                    "focus-visible:border-none outline-none will-change-transform",
+                    "focus-visible:border-transparent outline-none will-change-transform",
                     "focus-visible:ring-2 focus-visible:ring-ring",
                     "focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     {
